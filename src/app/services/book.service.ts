@@ -26,7 +26,9 @@ export class BookService {
     const endpoint =  this.url + this.serverApi;
     return this.http.get(endpoint)
       .toPromise()
-      .then(response => response.json() as Book[])
+      .then(response => {
+        return response.json() as Book[]
+      })
       .catch(this.handleError);
   }
 

@@ -5,7 +5,7 @@ import { BookService, REST_URL } from "./book.service";
 @NgModule({
     imports: [HttpModule, JsonpModule],
     providers: [BookService,
-        { provide: REST_URL, useValue: "http://localhost:3000/" }]
+        { provide: REST_URL, useValue: "http://localhost:3500/" }]
 
 })
 export class ServiceModule { }
