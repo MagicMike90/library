@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppHeaderComponent } from './app-header/app-header.component';
 import { AppSidebarComponent } from './app-sidebar/app-sidebar.component';
 import { BookListComponent } from './book-list/book-list.component';
-import { MatToolbarModule, MatTableModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -14,9 +14,7 @@ import { MatToolbarModule, MatTableModule } from '@angular/material';
     BookListComponent
   ],
   imports: [
-    BrowserModule,
-    MatToolbarModule,
-    MatTableModule
+    BrowserModule
   ],
   exports: [
     AppHeaderComponent,
