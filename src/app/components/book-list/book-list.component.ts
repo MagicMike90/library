@@ -10,6 +10,7 @@ import { BookService } from '../../services/book.service';
 })
 export class BookListComponent implements OnInit {
   books: Book[] = new Array<Book>();
+  open: Boolean = false;
 
   constructor(private bookService: BookService) { }
 
@@ -17,7 +18,7 @@ export class BookListComponent implements OnInit {
     // this.bookService.getAllBooks().subscribe(data => this.books = data);
     this.bookService.getAllBooks().then(data => this.books = data);
   }
-  addNewBook() {
-
+  toggleForm() {
+    this.open = !this.open;
   }
 }
