@@ -6,6 +6,10 @@ material-app,
 mat-sidenav-container,
 .main-content {
   margin: 0;
-  width: 100%;
   height: 100%;
+}
+.main-content {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 5px;
 }
