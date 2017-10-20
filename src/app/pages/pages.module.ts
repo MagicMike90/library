@@ -2,21 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule, JsonpModule } from "@angular/http"
+
 import {
   MatCardModule,
   MatButtonModule,
   MatGridListModule
 } from '@angular/material';
 
-import { HttpModule, JsonpModule } from "@angular/http"
-import { BookService, REST_URL } from "./services/book.service";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroesComponent } from './heroes/heroes.component';
-
+import { BookService } from "./services/book.service";
+import { HeroService, HERO_REST_URL } from "./services/hero.service";
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
+    JsonpModule,
     BrowserModule,
     RouterModule,
     MatCardModule,
@@ -31,7 +34,9 @@ import { HeroesComponent } from './heroes/heroes.component';
     DashboardComponent,
     HeroesComponent,
   ],
-  providers: [BookService,
-    { provide: REST_URL, useValue: "http://localhost:3500/" }]
+  providers: [
+    BookService,
+    HeroService,
+    { provide: HERO_REST_URL, useValue: "http://localhost:3500/" }]
 })
 export class PagesModule { }

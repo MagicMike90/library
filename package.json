@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "dev:server": "nodemon ./server/bin/www --exec babel-node --presets es2015,stage-2",
-    "json": "json-server --watch db.js  --port 3500",
+    "json": "json-server --watch db.js  --port 3500 --routes mock-routes.json",
     "build:client": "ng build",
     "build:server": "babel server --presets=es2015-node6 --out-dir build --source-maps",
     "build": "ng build",
