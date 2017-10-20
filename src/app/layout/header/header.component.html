@@ -1,18 +1,17 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button>
+  <!-- <button mat-icon-button>
     <mat-icon>menu</mat-icon>
-  </button>
-  <span>Portal</span>
+  </button> -->
+  <img class="logo" src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" />
+  <span>{{title}}</span>
   <span class="example-spacer"></span>
   <button mat-icon-button>
     <mat-icon>email</mat-icon>
   </button>
-  <button mat-icon-button>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>account_circle</mat-icon>
   </button>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
+
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
       <mat-icon>dialpad</mat-icon>

@@ -1,12 +1,17 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav class="example-sidenav">
-    Jolly good!
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-nav-list>
+      <mat-list-item routerLink="/dashboard">
+        <a matLine>Dashboard</a>
+      </mat-list-item>
+      <mat-list-item routerLink="/heroes">
+        <a matLine>Heroes</a>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-sidenav>
 
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="sidenav.open()">
-      Open sidenav
-    </button>
+  <div class="main-content">
+    <router-outlet></router-outlet>
   </div>
 
 </mat-sidenav-container>
