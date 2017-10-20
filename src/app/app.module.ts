@@ -3,10 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
-import { ServiceModule } from "./services/service.module";
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
