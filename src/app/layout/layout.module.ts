@@ -7,7 +7,8 @@ import {
   MatButtonModule,
   MatMenuModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { HeaderComponent } from './header/header.component';
@@ -22,7 +23,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatButtonModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ],
   declarations: [HeaderComponent, SidebarComponent],
   exports: [

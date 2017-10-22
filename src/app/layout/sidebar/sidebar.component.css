@@ -1,20 +1,15 @@
-.example-container {
-  width: 500px;
-  height: 300px;
-}
-
-.example-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.example-sidenav {
-  padding: 20px;
-}
-
 .mat-sidenav {
-  width: 280px;
+  width: 64px;
+  background-color: #3a4651;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+  z-index: 20;
 }
 
+.mat-list-item-content {
+  color: white;
+}
+
+.mat-nav-list .mat-list-item {
+  color: white;
+}

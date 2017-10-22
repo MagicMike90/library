@@ -1,46 +1,59 @@
-<h3>Top Heroes</h3>
 
-<mat-nav-list>
-  <mat-list-item *ngFor="let hero of heroes;let i = index">
-     <a matLine href="...">{{ link }}</a>
-     <mat-card>
+
+<!-- 
+<div class="col" *ngFor="let hero of heroes;let i = index">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <img [src]="images[0]">
+      </div>
+      <mat-card-title>{{hero.name}}</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+        very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary">View</button>
+    </mat-card-actions>
+  </mat-card>
+</div> -->
+
+<div class="row">
+  <div class="col-6">
+    <mat-card>
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image">
-          <img [src]="images[0]">
-        </div>
-        <mat-card-title>{{hero.name}}</mat-card-title>
+        <mat-card-title>Total Heros</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-          very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-        </p>
+        <h2>{{heroes?.length}}</h2>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button color="primary" (click)="showInfo(link)">View</button>
+        <button mat-button color="primary">View</button>
       </mat-card-actions>
     </mat-card>
-  </mat-list-item>
-</mat-nav-list>
-
-    <!-- <div class="col" *ngFor="let hero of heroes;let i = index">
-      <mat-card>
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image">
-            <img [src]="images[0]">
-          </div>
-          <mat-card-title>{{hero.name}}</mat-card-title>
-          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-            very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button color="primary">View</button>
-        </mat-card-actions>
-      </mat-card>
-    </div> -->
-
+  </div>
+</div>
+<!-- <div>
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <img [src]="images[0]">
+      </div>
+      <mat-card-title>Total Heros</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+        very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary">View</button>
+    </mat-card-actions>
+  </mat-card>
+</div> -->

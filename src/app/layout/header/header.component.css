@@ -6,10 +6,13 @@
   flex: 1 1 auto;
 }
 .logo {
-  width: 28px;
+  width: 32px;
   margin-right: 5px;
 }
 /* .mat-toolbar.mat-primary {
   position: fixed;
   z-index: 5;
 } */
+.mat-toolbar.mat-primary {
+  color: white;
+}
