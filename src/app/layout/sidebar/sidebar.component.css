@@ -13,3 +13,7 @@
 .mat-nav-list .mat-list-item {
   color: white;
 }
+
+.mat-nav-list .selected {
+  color: #8bc34a;
+}
