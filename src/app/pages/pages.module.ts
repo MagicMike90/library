@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from "@angular/http"
-import { FlexLayoutModule } from '@angular/flex-layout';
+
 import {
   MatCardModule,
   MatButtonModule,
@@ -22,7 +22,6 @@ import { HeroService, HERO_REST_URL } from "./services/hero.service";
     HttpModule,
     JsonpModule,
     BrowserModule,
-    FlexLayoutModule,
     RouterModule,
     MatCardModule,
     MatButtonModule,

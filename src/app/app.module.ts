@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
@@ -20,7 +19,6 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
     LayoutModule,
     PagesModule,
     AppRoutingModule
