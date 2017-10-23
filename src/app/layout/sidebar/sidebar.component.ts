@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import {MediaChange, ObservableMedia} from "@angular/flex-layout";
-import {Subscription} from "rxjs/Subscription";
+import { MediaChange, ObservableMedia } from "@angular/flex-layout";
+import { Subscription } from "rxjs/Subscription";
 
 class Menu {
   label: String;
@@ -19,22 +19,26 @@ class Menu {
 export class SidebarComponent implements OnInit {
   watcher: Subscription;
   activeMediaQuery = "";
+  mode: String;
+  open: Boolean;
 
-  mode : String;
   menus: Menu[];
   selectedLink: String;
 
-  constructor(private router: Router, media: ObservableMedia) { 
-    this.mode = 'push;
+  constructor(private router: Router, media: ObservableMedia) {
+    this.mode = 'push';
+    this.open = true;
     this.watcher = media.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : "";
-      if ( change.mqAlias == 'xs') {
+      if (change.mqAlias == 'sm' || change.mqAlias == 'xs') {
         this.mode = 'over';
+        this.open = false;
       }
       else {
         this.mode = 'side';
+        this.open = true;
       }
-        
+
     });
   }
   ngOnDestroy() {

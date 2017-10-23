@@ -9,10 +9,11 @@
   width: 32px;
   margin-right: 5px;
 }
-/* .mat-toolbar.mat-primary {
-  position: fixed;
-  z-index: 5;
-} */
 .mat-toolbar.mat-primary {
   color: white;
+}
+@media (min-width: 767px) { 
+  .burger {
+    display: none;
+  }
 }
