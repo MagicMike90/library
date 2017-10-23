@@ -1,14 +1,15 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" opened="true">
     <mat-nav-list *ngFor="let menu of menus">
-      <mat-list-item routerLink={{menu.link}} [class.selected]="menu.link === selectedLink" (click)="onSelect(menu.link)" 
-      matTooltip={{menu.label}} matTooltipPosition="right">
+      <mat-list-item routerLink={{menu.link}} [class.selected]="menu.link === selectedLink" (click)="onSelect(menu.link)" matTooltip={{menu.label}}
+        matTooltipPosition="right">
         <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
         <h4 mat-line>{{menu.label}}</h4>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 
+  <app-header [sidenav]="sidenav"></app-header>
   <div class="main-content mat-typography">
     <router-outlet></router-outlet>
   </div>
