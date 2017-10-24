@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output ,EventEmitter} from '@angular/core';
 import {SidebarComponent} from '../sidebar/sidebar.component';
 
 @Component({
+  moduleId: module.id,
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
@@ -19,12 +20,10 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.sidenav);
   }
 
   toggleSidenav(){
     this.shortnav = !this.shortnav;
-    console.log("shortnav: " + this.shortnav)
     this.change.emit(this.shortnav);
   }
 }

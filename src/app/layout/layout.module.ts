@@ -10,7 +10,7 @@ import {
   MatListModule,
   MatTooltipModule
 } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -25,8 +25,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatTooltipModule,
-    FlexLayoutModule
+    MatTooltipModule
   ],
   declarations: [HeaderComponent, SidebarComponent],
   exports: [

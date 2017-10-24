@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from "@angular/http"
-
 import {
   MatCardModule,
   MatButtonModule,
-  MatGridListModule,
   MatIconModule,
+  MatTableModule,
+  MatPaginatorModule
 } from '@angular/material';
 
+import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { BookService } from "./services/book.service";
 import { HeroService, HERO_REST_URL } from "./services/hero.service";
+import { TableComponent } from './heroes/table/table.component';
 
 @NgModule({
   imports: [
@@ -23,14 +26,14 @@ import { HeroService, HERO_REST_URL } from "./services/hero.service";
     JsonpModule,
     BrowserModule,
     RouterModule,
-    MatCardModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatIconModule,
+    SharedModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   declarations: [
     DashboardComponent,
-    HeroesComponent
+    HeroesComponent,
+    TableComponent
   ],
   exports: [
     DashboardComponent,

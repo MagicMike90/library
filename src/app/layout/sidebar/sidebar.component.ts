@@ -8,8 +8,10 @@ class Menu {
   icon: String;
   link: String;
 }
+const PRINT_MOBILE = 'print and (max-width: 600px)';
 
 @Component({
+  moduleId: module.id,
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
@@ -25,9 +27,8 @@ export class SidebarComponent implements OnInit {
   menus: Menu[];
   selectedLink: String;
 
-  constructor(private router: Router, media: ObservableMedia) {
-    this.mode = 'push';
-    this.open = true;
+  constructor(private router: Router, public media: ObservableMedia) {
+ 
     this.watcher = media.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : "";
       if (change.mqAlias == 'sm' || change.mqAlias == 'xs') {
@@ -45,6 +46,15 @@ export class SidebarComponent implements OnInit {
     this.watcher.unsubscribe();
   }
   ngOnInit() {
+    const is_mobile = this.media.isActive('xs') || this.media.isActive('sm');
+    if (is_mobile && !this.media.isActive(PRINT_MOBILE)) {
+      this.mode = 'push';
+      this.open = false;
+    }else {
+      this.mode = 'side';
+      this.open = true;
+    }
+
     this.menus = [
       { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
       { label: 'Heroes', icon: 'people', link: '/heroes' },
