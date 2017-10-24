@@ -18,3 +18,8 @@
   color: #8bc34a;
 }
 
+@media (min-width: 767px) { 
+  .mat-sidenav {
+    width: 64px;
+  }
+}

@@ -31,8 +31,6 @@ import { StatPercentPipe } from './pipes/stat-percent.pipe';
     RadarChartComponent,
     RecentActivityComponent,
     StatsCardComponent,
-
-    MatCardModule,
     FlexLayoutModule,
 
     StatPercentPipe

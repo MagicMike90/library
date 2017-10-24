@@ -8,36 +8,57 @@ mat-sidenav-container,
   margin: 0;
   height: 100%;
 }
+
 .main-content {
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 25px;
 }
+
 .row {
   padding: 15px 0;
 }
+
 .power {
   color: #F44336;
- }
- .power .mat-progress-bar-fill::after {
+}
+
+.power .mat-progress-bar-fill::after {
   background-color: #F44336 !important;
- }
- .speed {
-   color: #FFC107;
- }
- .speed .mat-progress-bar-fill::after {
+}
+
+.speed {
+  color: #FFC107;
+}
+
+.speed .mat-progress-bar-fill::after {
   background-color: #FFC107 !important;
- }
- .defence {
-   color: #795548;
- }
- .defence .mat-progress-bar-fill::after {
+}
+
+.defence {
+  color: #795548;
+}
+
+.defence .mat-progress-bar-fill::after {
   background-color: #795548 !important;
- }
- .skill  {
-   color: #2196F3;
- }
- .skill .mat-progress-bar-fill::after {
+}
+
+.skill {
+  color: #2196F3;
+}
+
+.skill .mat-progress-bar-fill::after {
   background-color: #2196F3 !important;
- }
- 
+}
+
+.heroes .selected {
+  background-color: #8bc34a !important;
+
+}
+.heroes .selected a {
+  color: white;
+}
+.heroes .mat-list-item.selected:hover {
+  background-color: #BBD8DC !important;
+  color: white;
+}

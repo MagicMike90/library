@@ -9,7 +9,8 @@ import {
   MatButtonModule,
   MatIconModule,
   MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatListModule
 } from '@angular/material';
 
 import { SharedModule } from '../shared/shared.module';
@@ -18,6 +19,7 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { BookService } from "./services/book.service";
 import { HeroService, HERO_REST_URL } from "./services/hero.service";
 import { TableComponent } from './heroes/table/table.component';
+import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
 
 @NgModule({
   imports: [
@@ -25,15 +27,19 @@ import { TableComponent } from './heroes/table/table.component';
     HttpModule,
     JsonpModule,
     BrowserModule,
+    FormsModule,
     RouterModule,
     SharedModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule,
+    MatListModule
   ],
   declarations: [
     DashboardComponent,
     HeroesComponent,
-    TableComponent
+    TableComponent,
+    HeroDetailComponent
   ],
   exports: [
     DashboardComponent,

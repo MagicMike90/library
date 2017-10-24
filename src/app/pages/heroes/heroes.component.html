@@ -1,1 +1,25 @@
-<app-table></app-table>
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>Heroes</mat-card-title>
+    <img mat-card-mat-image>
+  </mat-card-title-group>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <app-table [onSelect]="onSelect($event)" [heroes]="heroes" [selectedHero]="selectedHero"></app-table>
+      </div>
+      <div class="col-sm-12 col-md-8">
+        <!-- <app-hero-detail></app-hero-detail> -->
+        <div *ngIf="selectedHero">
+          <h2>{{selectedHero.name}} details!</h2>
+          <div>
+            <label>id: </label>{{selectedHero.id}}</div>
+          <div>
+            <label>name: </label>
+            <input [(ngModel)]="selectedHero.name" placeholder="name" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
