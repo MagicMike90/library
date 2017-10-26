@@ -1,4 +1,4 @@
-// const faker = require("faker");
+const faker = require("faker");
 // module.exports = function () {
 
 //   var data = {}
@@ -22,7 +22,26 @@
 //   return data;
 // }
 module.exports = function () {
+
+  var products = [];
+  for (var i = 0; i < 100; i++) {
+    var color = faker.commerce.color();
+    var department  = faker.commerce.department();
+    var price  = faker.commerce.price();
+    var category  = faker.commerce.product();
+    products.push({color,department, price,category});
+  }
+
+
+  var transactions = [];
+  for (var i = 0; i < 100; i++) {
+    var transaction = faker.helpers.createTransaction();
+    transactions.push(transaction);
+  }
+
   return {
+      transactions:transactions,
+      products:products,
       heroes: [
         { id: 0, name: 'Zero' },
         { id: 11, name: 'Mr. Nice' },
