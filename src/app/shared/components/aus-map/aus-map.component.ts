@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild, Input } from '@angular/core';
 import * as d3 from 'd3';
 import * as d3Scale from "d3-scale";
 import * as d3Shape from "d3-shape";
@@ -13,10 +13,13 @@ import * as topojson from 'topojson';
   encapsulation: ViewEncapsulation.None
 })
 export class AusMapComponent implements OnInit {
+  @ViewChild('chart') private chartContainer: ElementRef;
+  @Input() private data: Array<any>;
+
   private htmlElement: HTMLElement;
   private width: number;
   private height: number;
-  private margin: any;
+  private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
   private svg: any;
   private g: any;
   private projection: any;
@@ -32,22 +35,14 @@ export class AusMapComponent implements OnInit {
     this.initMap();
     this.drawMap();
   }
-  ngAfterViewInit() {
-   
-    console.log('this.htmlElement.clientWidth', this.htmlElement.clientWidth);
-    console.log('this.htmlElement.offsetParent', this.htmlElement.offsetParent);
-  }
   private initMap(): void {
-    const parentWidth = this.htmlElement.clientWidth;
+    let element = this.chartContainer.nativeElement;
+    this.width = element.offsetWidth - this.margin.left - this.margin.right;
+    this.height = element.offsetWidth * 0.5 - this.margin.top - this.margin.bottom;
 
-    this.margin = { top: 0, right: 0, bottom: 0, left: 0 };
-    this.width = parentWidth - this.margin.left - this.margin.right;
-    // this.width = 790;
-    console.log('parentWidth', parentWidth);
-    console.log(' this.width ', this.width);
-
-    this.height = this.width * 0.5 - this.margin.top - this.margin.bottom;
-    this.svg = d3.select("svg").attr("width", this.width).attr("height", this.height);
+    this.svg = d3.select("svg")
+      .attr('width', this.width)
+      .attr('height', this.height);
     this.active = d3.select(null);
 
     this.svg.append("rect")
@@ -97,7 +92,6 @@ export class AusMapComponent implements OnInit {
     if (this.active.node() === nodes[i]) return this.reset();
     this.active.classed("active", false);
     this.active = d3.select(nodes[i]).classed("active", true);
-    // this.active = d3.select(nodes[i]).attr("class", "active");
 
     const bounds = this.path.bounds(d);
     const dx = bounds[1][0] - bounds[0][0];
