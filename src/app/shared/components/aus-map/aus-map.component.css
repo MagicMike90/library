@@ -1,3 +1,21 @@
+.d3-chart {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+svg .background {
+  fill: none;
+  pointer-events: all;
+  width: 100%;
+  height: 100%;
+}
+
 .states {
   fill: #3a4651;
   stroke: rgb(93, 93, 93);
@@ -6,9 +24,11 @@
 .states :hover {
   fill: orange;
 }
+
 .states .active {
   fill: orange;
 }
+
 .stats {
   position: absolute;
   z-index: 1;
@@ -16,19 +36,17 @@
   left: 0;
   margin: 5% 10%;
 }
+
 .text-white {
   color: #fff;
 }
+
 .text-warning {
   color: #f0b518;
 }
+
 .no-margin {
   margin: 0;
-}
-
-.background {
-  fill: none;
-  pointer-events: all;
 }
 
 .feature {
@@ -46,7 +64,8 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
 .aus-map {
   display: block;
-  width:100%;
+  width: 100%;
 }

@@ -24,7 +24,26 @@ export class DashboardComponent implements OnInit {
     // var randomCard = faker.helpers.createCard();
     // console.log('randomCard', randomCard);
     this.heroService.getHeroes()
-    .then(heroes => this.heroes = heroes.slice(1, 5));
-  }
+      .then(heroes => this.heroes = heroes.slice(1, 5));
 
+
+    // give everything a chance to get loaded before starting the animation to reduce choppiness
+    setTimeout(() => {
+      this.generateData();
+
+      // change the data periodically
+      setInterval(() => this.generateData(), 3000);
+    }, 1000);
+  }
+  private chartData: Array<any> = [];
+
+  generateData() {
+    this.chartData = [];
+    for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
+      this.chartData.push([
+        `Index ${i}`,
+        Math.floor(Math.random() * 100)
+      ]);
+    }
+  }
 }

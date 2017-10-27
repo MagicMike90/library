@@ -15,6 +15,7 @@ import { RecentActivityComponent } from './components/recent-activity/recent-act
 import { StatsCardComponent } from './components/stats-card/stats-card.component';
 import { StatPercentPipe } from './pipes/stat-percent.pipe';
 import { AusMapComponent } from './components/aus-map/aus-map.component';
+import { BarchartComponent } from './components/barchart/barchart.component';
 
 @NgModule({
   imports: [
@@ -30,16 +31,17 @@ import { AusMapComponent } from './components/aus-map/aus-map.component';
   exports: [
     FlexLayoutModule,
     MessageModule,
-    
+
     // export components
     RadarChartComponent,
     RecentActivityComponent,
     StatsCardComponent,
     AusMapComponent,
+    BarchartComponent,
 
     // export pipes
     StatPercentPipe
   ],
-  declarations: [RadarChartComponent, RecentActivityComponent, StatsCardComponent, StatPercentPipe, AusMapComponent]
+  declarations: [RadarChartComponent, RecentActivityComponent, StatsCardComponent, StatPercentPipe, AusMapComponent, BarchartComponent]
 })
 export class SharedModule { }
