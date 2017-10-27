@@ -91,6 +91,8 @@ export class AusMapComponent implements OnInit {
       if (err) {
         return console.error('d3', err);
       }
+
+      aus = this.data;
       this.geojson = aus;
       this.projection = d3.geoMercator()
         .fitSize([this.width, this.height], aus)
@@ -105,7 +107,9 @@ export class AusMapComponent implements OnInit {
         .attr("d", this.path)
         .attr("class", "state")
         .on("mouseover", function (d) {
-          d3.select("h2").text(d.properties.name);
+         
+          d3.select("h2").text(d.properties.brk_name);
+          console.log(d.properties.brk_name);
           // d3.select(this).attr("class", "county hover");
         })
         .on("mouseout", function (d) {

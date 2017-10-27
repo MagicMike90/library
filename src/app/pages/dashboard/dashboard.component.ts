@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../models/hero.model';
+import { Http } from '@angular/http';
 
+import { Hero } from '../models/hero.model';
 import { HeroService } from '../services/hero.service';
 
 @Component({
@@ -19,8 +20,9 @@ export class DashboardComponent implements OnInit {
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
   private chartData: Array<any> = [];
-  
-  constructor(private heroService: HeroService) { }
+  private url: string = "../../../assets/geojson/custom.geo.json";
+
+  constructor(private heroService: HeroService, private http: Http) { }
 
   ngOnInit() {
     // var randomCard = faker.helpers.createCard();
@@ -28,7 +30,8 @@ export class DashboardComponent implements OnInit {
     this.heroService.getHeroes()
       .then(heroes => this.heroes = heroes.slice(1, 5));
 
-
+    this.http.get(this.url)
+      .subscribe(res => this.chartData = res.json());
     // // give everything a chance to get loaded before starting the animation to reduce choppiness
     // setTimeout(() => {
     //   this.generateData();
@@ -39,13 +42,13 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  generateData() {
-    this.chartData = [];
-    for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
-      this.chartData.push([
-        `Index ${i}`,
-        Math.floor(Math.random() * 100)
-      ]);
-    }
-  }
+  // generateData() {
+  //   this.chartData = [];
+  //   for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
+  //     this.chartData.push([
+  //       `Index ${i}`,
+  //       Math.floor(Math.random() * 100)
+  //     ]);
+  //   }
+  // }
 }
