@@ -22,7 +22,9 @@ export class AusMapComponent implements OnInit {
     this.caluclateDimension();
 
     // update projection
-    this.projection = d3.geoMercator().fitExtent([[0, 0], [this.width, this.height]], this.geojson);
+    this.projection = d3.geoMercator()
+      // .fitExtent([[0, 0], [this.width, this.height]], this.geojson);
+      .fitSize([this.width, this.height], this.geojson);
 
     //update path
     this.path = d3.geoPath().projection(this.projection);
@@ -36,6 +38,7 @@ export class AusMapComponent implements OnInit {
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20 };
   private mapRatio: number = 0.5;
   private svg: any;
+  private backgrond: any;
   private g: any;
   private active: any;
 
@@ -54,9 +57,7 @@ export class AusMapComponent implements OnInit {
   private initMap(): void {
     // create svg
     this.svg = d3.select(this.chartContainer.nativeElement).append('svg');
-
-    // setup svg background, when click outside the map, resetView the map
-    this.svg.append("rect")
+    this.backgrond = this.svg.append("rect")
       .attr("class", "background")
       .on("click", this.resetView.bind(this));
 
@@ -69,9 +70,15 @@ export class AusMapComponent implements OnInit {
   private caluclateDimension(): void {
     const element = this.chartContainer.nativeElement;
     this.width = element.offsetWidth - this.margin.left - this.margin.right;
-    this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
-    this.svg.attr('width', element.offsetWidth)
-      .attr('height', element.offsetHeight);
+    this.height = element.offsetWidth * 0.5 - this.margin.top - this.margin.bottom;
+
+    this.svg.attr('width', this.width)
+      .attr('height', this.height);
+
+    // setup svg background, when click outside the map, resetView the map
+    this.backgrond
+      .attr('width', this.width)
+      .attr('height', this.height)
   }
   private drawMap(): void {
     d3.json(this.url, (err, aus: any) => {
@@ -79,7 +86,10 @@ export class AusMapComponent implements OnInit {
         return console.error('d3', err);
       }
       this.geojson = aus;
-      this.projection = d3.geoMercator().fitExtent([[0, 0], [this.width, this.height]], aus);
+      this.projection = d3.geoMercator()
+        // .fitExtent([[15, 15], [this.width, this.height]], aus)
+        .fitSize([this.width, this.height], aus)
+        .precision(0.1);
 
       this.path = d3.geoPath().projection(this.projection);
 
@@ -106,7 +116,7 @@ export class AusMapComponent implements OnInit {
     })
   }
   clickeState(d, i, nodes): void {
-    console.log('clickeState',this.active.node());
+
     if (this.active.node() === nodes[i]) return this.resetView();
     this.active.classed("active", false);
     this.active = d3.select(nodes[i]).classed("active", true);
@@ -119,6 +129,7 @@ export class AusMapComponent implements OnInit {
     const scale = .9 / Math.max(dx / this.width, dy / this.height);
     const translate = [this.width / 2 - scale * x, this.height / 2 - scale * y];
 
+    console.log('scale',scale);
     this.g.transition()
       .duration(750)
       .style("stroke-width", 1.5 / scale + "px")
