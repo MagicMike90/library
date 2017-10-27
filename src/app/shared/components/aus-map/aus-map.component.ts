@@ -44,7 +44,7 @@ export class AusMapComponent implements OnInit {
 
   private projection: any;
   private path: any;
-  private url: string = "../../../assets/geojson/states.min.geojson";
+  private url: string = "../../../assets/geojson/custom.geo.json";
   private geojson: any;
 
   constructor() { }
