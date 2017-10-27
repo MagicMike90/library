@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
     { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
+  private chartData: Array<any> = [];
+  
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
@@ -27,15 +29,15 @@ export class DashboardComponent implements OnInit {
       .then(heroes => this.heroes = heroes.slice(1, 5));
 
 
-    // give everything a chance to get loaded before starting the animation to reduce choppiness
-    setTimeout(() => {
-      this.generateData();
+    // // give everything a chance to get loaded before starting the animation to reduce choppiness
+    // setTimeout(() => {
+    //   this.generateData();
 
-      // change the data periodically
-      setInterval(() => this.generateData(), 3000);
-    }, 1000);
+    //   // change the data periodically
+    //   setInterval(() => this.generateData(), 3000);
+    // }, 1000);
   }
-  private chartData: Array<any> = [];
+
 
   generateData() {
     this.chartData = [];

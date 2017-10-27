@@ -36,11 +36,11 @@ export class AusMapComponent implements OnInit {
   private width: number;
   private height: number;
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20 };
-  private mapRatio: number = 0.5;
+  private mapRatio: number = .7;
   private svg: any;
   private backgrond: any;
   private g: any;
-  private active: any;
+  private activeBlock: any = d3.select(null);
 
   private projection: any;
   private path: any;
@@ -53,10 +53,16 @@ export class AusMapComponent implements OnInit {
     this.initMap();
     this.drawMap();
   }
+  ngOnChanges() {
+    console.log('ngOnChanges');
+  }
 
+ 
   private initMap(): void {
     // create svg
     this.svg = d3.select(this.chartContainer.nativeElement).append('svg');
+
+    // create svg background
     this.backgrond = this.svg.append("rect")
       .attr("class", "background")
       .on("click", this.resetView.bind(this));
@@ -70,7 +76,7 @@ export class AusMapComponent implements OnInit {
   private caluclateDimension(): void {
     const element = this.chartContainer.nativeElement;
     this.width = element.offsetWidth - this.margin.left - this.margin.right;
-    this.height = element.offsetWidth * 0.5 - this.margin.top - this.margin.bottom;
+    this.height = element.offsetWidth * this.mapRatio - this.margin.top - this.margin.bottom;
 
     this.svg.attr('width', this.width)
       .attr('height', this.height);
@@ -87,7 +93,6 @@ export class AusMapComponent implements OnInit {
       }
       this.geojson = aus;
       this.projection = d3.geoMercator()
-        // .fitExtent([[15, 15], [this.width, this.height]], aus)
         .fitSize([this.width, this.height], aus)
         .precision(0.1);
 
@@ -117,9 +122,9 @@ export class AusMapComponent implements OnInit {
   }
   clickeState(d, i, nodes): void {
 
-    if (this.active.node() === nodes[i]) return this.resetView();
-    this.active.classed("active", false);
-    this.active = d3.select(nodes[i]).classed("active", true);
+    if (this.activeBlock.node() === nodes[i]) return this.resetView();
+    this.activeBlock.classed("active", false);
+    this.activeBlock = d3.select(nodes[i]).classed("active", true);
 
     const bounds = this.path.bounds(d);
     const dx = bounds[1][0] - bounds[0][0];
@@ -129,15 +134,14 @@ export class AusMapComponent implements OnInit {
     const scale = .9 / Math.max(dx / this.width, dy / this.height);
     const translate = [this.width / 2 - scale * x, this.height / 2 - scale * y];
 
-    console.log('scale',scale);
     this.g.transition()
       .duration(750)
       .style("stroke-width", 1.5 / scale + "px")
       .attr("transform", "translate(" + translate + ")scale(" + scale + ")");
   }
   resetView(): void {
-    this.active.classed("active", false);
-    this.active = d3.select(null);
+    this.activeBlock.classed("active", false);
+    this.activeBlock = d3.select(null);
 
     this.g.transition()
       .duration(750)

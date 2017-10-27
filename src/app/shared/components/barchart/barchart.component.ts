@@ -24,21 +24,19 @@ export class BarchartComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.createChart();
-    // if (this.data) {
-    //   this.updateChart();
-    // }
+    if (this.data) {
+      this.updateChart();
+    }
   }
 
   ngOnChanges() {
-    // if (this.chart) {
-    //   this.updateChart();
-    // }
+    if (this.chart) {
+      this.updateChart();
+    }
   }
 
   createChart() {
     let element = this.chartContainer.nativeElement;
-    console.log('element.offsetWidth', element.offsetWidth);
-    console.log('element.offsetHeight', element.offsetHeight);
     this.width = element.offsetWidth - this.margin.left - this.margin.right;
     this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
     let svg = d3.select(element).append('svg')
