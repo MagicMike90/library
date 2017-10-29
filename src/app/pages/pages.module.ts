@@ -20,6 +20,7 @@ import { BookService } from "./services/book.service";
 import { HeroService, HERO_REST_URL } from "./services/hero.service";
 import { TableComponent } from './heroes/table/table.component';
 import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
+import { CustomersComponent } from './customers/customers.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component'
     DashboardComponent,
     HeroesComponent,
     TableComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    CustomersComponent
   ],
   exports: [
     DashboardComponent,

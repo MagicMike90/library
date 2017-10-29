@@ -57,7 +57,10 @@ export class SidebarComponent implements OnInit {
 
     this.menus = [
       { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
-      { label: 'Heroes', icon: 'people', link: '/heroes' },
+      { label: 'Customers', icon: 'people', link: '/customers' },
+      { label: 'Segments', icon: 'label', link: '/segments' },
+      { label: 'Orders', icon: 'receipt', link: '/orders' },
+      { label: 'Categories', icon: 'bookmark', link: '/categories' },
     ];
 
     this.router.events.subscribe((val) => {

@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
     { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
-  private chartData: Array<any> = [];
+  private geojson: GeoJSON.FeatureCollection<any>;
   private url: string = "../../../assets/geojson/custom.geo.json";
 
   constructor(private heroService: HeroService, private http: Http) { }
@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
       .then(heroes => this.heroes = heroes.slice(1, 5));
 
     this.http.get(this.url)
-      .subscribe(res => this.chartData = res.json());
+      .subscribe(res => this.geojson = res.json());
     // // give everything a chance to get loaded before starting the animation to reduce choppiness
     // setTimeout(() => {
     //   this.generateData();

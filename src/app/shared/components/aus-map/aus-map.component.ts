@@ -15,7 +15,7 @@ import * as topojson from 'topojson';
 export class AusMapComponent implements OnInit {
   @ViewChild('ausmap') private chartContainer: ElementRef;
 
-  @Input() private data: Array<any>;
+  @Input() private geojson: GeoJSON.FeatureCollection<any>;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -23,7 +23,6 @@ export class AusMapComponent implements OnInit {
 
     // update projection
     this.projection = d3.geoMercator()
-      // .fitExtent([[0, 0], [this.width, this.height]], this.geojson);
       .fitSize([this.width, this.height], this.geojson);
 
     //update path
@@ -44,8 +43,7 @@ export class AusMapComponent implements OnInit {
 
   private projection: any;
   private path: any;
-  private url: string = "../../../assets/geojson/custom.geo.json";
-  private geojson: any;
+
 
   constructor() { }
 
@@ -57,7 +55,7 @@ export class AusMapComponent implements OnInit {
     console.log('ngOnChanges');
   }
 
- 
+
   private initMap(): void {
     // create svg
     this.svg = d3.select(this.chartContainer.nativeElement).append('svg');
@@ -87,44 +85,35 @@ export class AusMapComponent implements OnInit {
       .attr('height', this.height)
   }
   private drawMap(): void {
-    d3.json(this.url, (err, aus: any) => {
-      if (err) {
-        return console.error('d3', err);
-      }
+    this.projection = d3.geoMercator()
+      .fitSize([this.width, this.height], this.geojson)
+      .precision(0.1);
 
-      aus = this.data;
-      this.geojson = aus;
-      this.projection = d3.geoMercator()
-        .fitSize([this.width, this.height], aus)
-        .precision(0.1);
+    this.path = d3.geoPath().projection(this.projection);
 
-      this.path = d3.geoPath().projection(this.projection);
+    this.g.attr("class", "states")
+      .selectAll("path")
+      .data(this.geojson.features)
+      .enter().append("path")
+      .attr("d", this.path)
+      .attr("class", "state")
+      .on("mouseover", d => this.hightLight(d))
+      .on("mouseout", function (d) {
+        d3.select("h2").text("");
+      })
+      .on("click", this.clickeState.bind(this));;
 
-      this.g.attr("class", "states")
-        .selectAll("path")
-        .data(aus.features)
-        .enter().append("path")
-        .attr("d", this.path)
-        .attr("class", "state")
-        .on("mouseover", function (d) {
-         
-          d3.select("h2").text(d.properties.brk_name);
-          console.log(d.properties.brk_name);
-          // d3.select(this).attr("class", "county hover");
-        })
-        .on("mouseout", function (d) {
-          d3.select("h2").text("");
-          // d3.select(this).attr("class", "county");
-        })
-        .on("click", this.clickeState.bind(this));;
-
-      this.g.append("path")
-        .datum(aus.features)
-        .attr("class", "mesh")
-        .attr("d", this.path);
-    })
+    this.g.append("path")
+      .datum(this.geojson.features)
+      .attr("class", "mesh")
+      .attr("d", this.path);
   }
-  clickeState(d, i, nodes): void {
+  private hightLight(d): void {
+    console.log(d);
+    d3.select("h2").text(d.properties.brk_name);
+    console.log(d.properties.brk_name);
+  }
+  private clickeState(d, i, nodes): void {
 
     if (this.activeBlock.node() === nodes[i]) return this.resetView();
     this.activeBlock.classed("active", false);

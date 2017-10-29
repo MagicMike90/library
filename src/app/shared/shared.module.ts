@@ -5,7 +5,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import {
   MatCardModule,
   MatProgressBarModule,
-  MatListModule
+  MatListModule,
+  MatIconModule,
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -26,7 +27,8 @@ import { BarchartComponent } from './components/barchart/barchart.component';
     ChartsModule,
     MatCardModule,
     MatProgressBarModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
   ],
   exports: [
     FlexLayoutModule,
