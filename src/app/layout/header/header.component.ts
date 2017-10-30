@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output ,EventEmitter} from '@angular/core';
-import {SidebarComponent} from '../sidebar/sidebar.component';
+import { Component, OnInit, Input} from '@angular/core';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { EmitterService } from '../../shared/services//emitter.service';
 
 @Component({
   moduleId: module.id,
@@ -9,21 +10,16 @@ import {SidebarComponent} from '../sidebar/sidebar.component';
 })
 export class HeaderComponent implements OnInit {
   title = 'Hero Portal';
-  shortnav: Boolean;
+  open: Boolean;
 
-  @Input() 
-  sidenav;
-  
-  @Output()
-  change: EventEmitter<Boolean> = new EventEmitter<Boolean>();
-  
-  constructor() { }
+  @Input() id: string;
 
   ngOnInit() {
   }
 
-  toggleSidenav(){
-    this.shortnav = !this.shortnav;
-    this.change.emit(this.shortnav);
+  toggleSidenav() {
+    console.log('toggleSidenav');
+    this.open = !this.open;
+    EmitterService.get(this.id).emit(this.open);
   }
 }
