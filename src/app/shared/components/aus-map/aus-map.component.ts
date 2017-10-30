@@ -37,12 +37,17 @@ export class AusMapComponent implements OnInit {
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20 };
   private mapRatio: number = .7;
   private svg: any;
+  private tooltip: any;
+  private dataById: any;
   private backgrond: any;
   private g: any;
   private activeBlock: any = d3.select(null);
 
   private projection: any;
   private path: any;
+
+  private offsetL: number;
+  private offsetT: number;
 
 
   constructor() { }
@@ -59,6 +64,13 @@ export class AusMapComponent implements OnInit {
   private initMap(): void {
     // create svg
     this.svg = d3.select(this.chartContainer.nativeElement).append('svg');
+
+    this.offsetL = this.chartContainer.nativeElement.offsetLeft;
+    this.offsetT = this.chartContainer.nativeElement.offsetTop;
+
+    this.tooltip = d3.select(this.chartContainer.nativeElement)
+      .append("div")
+      .attr("class", "tooltip hidden");
 
     // create svg background
     this.backgrond = this.svg.append("rect")
@@ -91,16 +103,16 @@ export class AusMapComponent implements OnInit {
 
     this.path = d3.geoPath().projection(this.projection);
 
+    this.dataById = d3.map();
+
     this.g.attr("class", "states")
       .selectAll("path")
       .data(this.geojson.features)
       .enter().append("path")
       .attr("d", this.path)
       .attr("class", "state")
-      .on("mouseover", d => this.hightLight(d))
-      .on("mouseout", function (d) {
-        d3.select("h2").text("");
-      })
+      .on("mouseover", d => this.showTooltip(d))
+      .on("mouseout", d => this.hideTooltip(d))
       .on("click", this.clickeState.bind(this));;
 
     this.g.append("path")
@@ -108,11 +120,21 @@ export class AusMapComponent implements OnInit {
       .attr("class", "mesh")
       .attr("d", this.path);
   }
-  private hightLight(d): void {
-    console.log(d);
-    d3.select("h2").text(d.properties.brk_name);
-    console.log(d.properties.brk_name);
+  private hideTooltip(d): void {
+    this.tooltip.classed("hidden", true);
   }
+
+  private showTooltip(d): void {
+    const label = d.properties.name;
+    var mouse = d3.mouse(this.svg.node())
+      .map(d => d);
+
+    // Show the tooltip (unhide it) and set the name of the data entry.
+    this.tooltip.classed('hidden', false)
+      .attr("style", "left:" + (mouse[0] + this.offsetL) + "px;top:" + (mouse[1] + this.offsetT) + "px")
+      .html(label);
+  }
+
   private clickeState(d, i, nodes): void {
 
     if (this.activeBlock.node() === nodes[i]) return this.resetView();
