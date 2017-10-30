@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleSidenav(){
+    console.log('toggleSidenav');
     this.shortnav = !this.shortnav;
     this.change.emit(this.shortnav);
   }

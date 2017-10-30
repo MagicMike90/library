@@ -42,6 +42,9 @@ export class SidebarComponent implements OnInit {
 
     });
   }
+  ngOnChange(change) {
+    console.log('change',change);
+  }
   ngOnDestroy() {
     this.watcher.unsubscribe();
   }
