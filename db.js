@@ -36,6 +36,7 @@ module.exports = function () {
   var transactions = [];
   for (var i = 0; i < 100; i++) {
     var transaction = faker.helpers.createTransaction();
+    transaction.country = faker.address.country();
     transactions.push(transaction);
   }
 
