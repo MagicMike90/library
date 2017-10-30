@@ -1,28 +1,28 @@
-<mat-toolbar color="primary">
-  <button class="burger" mat-icon-button (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <img class="logo" src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" />
-  <span class="example-spacer"></span>
-  <button mat-icon-button>
-    <mat-icon>email</mat-icon>
-  </button>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
 
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voicemail</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
-    </button>
-  </mat-menu>
-</mat-toolbar>
+    <div class="navbar-header">
+      <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+        <i class="glyphicon glyphicon-align-left"></i>
+        <span>Toggle Sidebar</span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#">Page</a>
+        </li>
+        <li>
+          <a href="#">Page</a>
+        </li>
+        <li>
+          <a href="#">Page</a>
+        </li>
+        <li>
+          <a href="#">Page</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
