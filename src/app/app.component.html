@@ -1,9 +1,9 @@
 <!-- <app-header></app-header> -->
 
 <div class="wrapper">
-  <app-sidebar></app-sidebar>
+  <app-sidebar [id]="host_id"></app-sidebar>
   <div id="content" class="main-content mat-typography">
-    <app-header [sidenav]="sidenav"></app-header>
+    <app-header [id]="host_id"></app-header>
     <div class="layout-content">
       <router-outlet></router-outlet>
     </div>
