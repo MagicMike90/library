@@ -7,7 +7,7 @@ import * as Auth from '../actions/auth';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styles: ['./auth.component.css'],
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
   pending$ = this.store.select(fromAuth.getLoginPagePending);
