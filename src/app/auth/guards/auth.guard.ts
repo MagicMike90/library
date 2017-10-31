@@ -16,18 +16,13 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate(): Observable<boolean> {
-    console.log('canActivate');
     return this.store
       .select(fromAuth.getLoggedIn)
       .map(authed => {
         if (!authed) {
-          console.log('redirect');
-          this.store.dispatch(new Auth.LoginRedirect());
-          console.log('redirect');
-          this.router.navigate(['/Login']);
+          this.store.dispatch(new Auth.LoginRedirect()); 
           return false;
         }
-        console.log('redirect');
         return true;
       })
       .take(1);
