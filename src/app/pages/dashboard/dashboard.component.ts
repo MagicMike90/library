@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { Hero } from '../models/hero.model';
-import { HeroService } from '../services/hero.service';
 
 @Component({
   moduleId: module.id,
@@ -11,7 +9,7 @@ import { HeroService } from '../services/hero.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  heroes: Hero[];
+
   images = ['../../../assets/svg/hangouts.svg'];
   tiles = [
     { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
@@ -22,13 +20,9 @@ export class DashboardComponent implements OnInit {
   private geojson: GeoJSON.FeatureCollection<any>;
   private url: string = "../../../assets/geojson/custom.geo.json";
 
-  constructor(private heroService: HeroService, private http: Http) { }
+  constructor(private http: Http) { }
 
   ngOnInit() {
-    // var randomCard = faker.helpers.createCard();
-    // console.log('randomCard', randomCard);
-    this.heroService.getHeroes()
-      .then(heroes => this.heroes = heroes.slice(1, 5));
 
     this.http.get(this.url)
       .subscribe(res => this.geojson = res.json());
