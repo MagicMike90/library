@@ -4,20 +4,14 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from "@angular/http"
-import {
-  MatCardModule,
-  MatButtonModule,
-  MatIconModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatListModule
-} from '@angular/material';
 
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 import { BookService } from "./services/book.service";
 import { CustomersComponent } from './customers/customers.component';
-import { AuthComponent } from './auth/auth.component';
+
 
 @NgModule({
   imports: [
@@ -28,19 +22,17 @@ import { AuthComponent } from './auth/auth.component';
     FormsModule,
     RouterModule,
     SharedModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatListModule
   ],
   declarations: [
+    PageNotFoundComponent,
     DashboardComponent,
-
     CustomersComponent,
-    AuthComponent
+
   ],
   exports: [
+
     DashboardComponent,
+    CustomersComponent
   ],
   providers: [
     BookService

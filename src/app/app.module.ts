@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { RouterModule, Routes } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -12,24 +12,34 @@ import {
 } from '@ngrx/router-store';
 
 import { reducers, metaReducers } from './reducers';
-
+import { CustomRouterStateSerializer } from './shared/utils';
 
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './app-routing.module';
+import { RootRoutes } from './app-routing';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+
+import { AuthRoutingModule } from './auth/auth.module';
 
 // import order matters for NgModules.
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
+
+    // custom modules
+    LayoutModule,
+    PagesModule,
+    RouterModule.forRoot(RootRoutes),
+    AuthRoutingModule,
 
     /**
    * StoreModule.forRoot is imported once in the root module, accepting a reducer
@@ -55,11 +65,16 @@ import { AppComponent } from './app.component';
      */
     EffectsModule.forRoot([]),
 
-    LayoutModule,
-    PagesModule,
-    AppRoutingModule
+
   ],
-  providers: [],
+  providers: [
+    /**
+     * The `RouterStateSnapshot` provided by the `Router` is a large complex structure.
+     * A custom RouterStateSerializer is used to parse the `RouterStateSnapshot` provided
+     * by `@ngrx/router-store` to include only the desired pieces of the snapshot.
+     */
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

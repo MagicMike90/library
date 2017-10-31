@@ -1,8 +1,0 @@
-<mat-list *ngFor="let stat of stats">
-  <mat-list-item>
-    <h5 mat-line class={{stat.class}}>{{stat.label}} : {{stat.value|statPercent}}</h5>
-    <p mat-line>
-      <mat-progress-bar mode="determinate" [value]="stat.value" class={{stat.class}}></mat-progress-bar>
-    </p>
-  </mat-list-item>
-</mat-list>
