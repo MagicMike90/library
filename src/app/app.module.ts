@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {
@@ -34,7 +34,7 @@ import { AuthRoutingModule } from './auth/auth.module';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-
+    NgbModule.forRoot(),
     // custom modules
     LayoutModule,
     PagesModule,
