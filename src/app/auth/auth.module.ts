@@ -20,22 +20,23 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { ForgotFormComponent } from './components/forgot-form/forgot-form.component';
 
-// const authRoutes: Routes = [
-//   {
-//     path: 'auth', component: AuthComponent,
-//     children: [
-//       { path: 'login', component: LoginFormComponent },
-//       { path: 'forgot', component: ForgotFormComponent },
-//       { path: 'register', component: RegisterFormComponent }
-//     ]
-//   }
-// ];
-
 const authRoutes: Routes = [
-  { path: 'login', component: LoginFormComponent },
-  { path: 'forgot', component: ForgotFormComponent },
-  { path: 'register', component: RegisterFormComponent }
+  {
+    path: 'login', component: AuthComponent,
+    children: [
+      { path: '', redirectTo: '/login/identity', pathMatch: 'full' },
+      { path: 'identity', component: LoginFormComponent },
+      { path: 'forgot', component: ForgotFormComponent },
+      { path: 'register', component: RegisterFormComponent }
+    ]
+  }
 ];
+
+// const authRoutes: Routes = [
+//   { path: 'login', component: LoginFormComponent },
+//   { path: 'forgot', component: ForgotFormComponent },
+//   { path: 'register', component: RegisterFormComponent }
+// ];
 
 @NgModule({
   imports: [

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, Route } from "@angular/router";
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from './reducers';
@@ -13,6 +14,12 @@ export class AppComponent {
   title = 'Library';
   public host_id: "LAYOUT_COMPONENT";
 
+  
+  constructor(private router: Router) {}
+  
+  ngOnInit() {
+    console.log('configured routes: ', this.router.config);
+  }
   // constructor(private store: Store<fromRoot.State>) {
 		
 	// }

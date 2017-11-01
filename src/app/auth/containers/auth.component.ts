@@ -10,14 +10,14 @@ import * as Auth from '../actions/auth';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
-  pending$ = this.store.select(fromAuth.getLoginPagePending);
-  error$ = this.store.select(fromAuth.getLoginPageError);
+  pending = this.store.select(fromAuth.getLoginPagePending);
+  error = this.store.select(fromAuth.getLoginPageError);
 
   constructor(private store: Store<fromAuth.State>) {}
 
   ngOnInit() {}
 
-  onSubmit($event: Authenticate) {
-    this.store.dispatch(new Auth.Login($event));
+  onSubmit(event: Authenticate) {
+    this.store.dispatch(new Auth.Login(event));
   }
 }
