@@ -11,7 +11,8 @@ import { RecentActivityComponent } from './components/recent-activity/recent-act
 import { StatPercentPipe } from './pipes/stat-percent.pipe';
 import { AusMapComponent } from './components/aus-map/aus-map.component';
 import { BarchartComponent } from './components/barchart/barchart.component';
-import { ProgressComponent } from './progress/progress.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+
 
 @NgModule({
   imports: [
@@ -30,11 +31,11 @@ import { ProgressComponent } from './progress/progress.component';
     RecentActivityComponent,
     AusMapComponent,
     BarchartComponent,
-    ProgressComponent,
+    SpinnerComponent,
 
     // export pipes
     StatPercentPipe
   ],
-  declarations: [RadarChartComponent, RecentActivityComponent, StatPercentPipe, AusMapComponent, BarchartComponent, ProgressComponent]
+  declarations: [RadarChartComponent, RecentActivityComponent, StatPercentPipe, AusMapComponent, BarchartComponent, SpinnerComponent]
 })
 export class SharedModule { }

@@ -9,9 +9,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { AuthGuard } from './auth/guards/auth.guard';
 
 export const RootRoutes: Routes = [
-    { path: 'app', component: HomeComponent, canActivate: [AuthGuard], pathMatch: 'full' },
-    // { path: 'dashboard', component: DashboardComponent },
-    // { path: 'customers', component: CustomersComponent },
+    { path: '', component: HomeComponent, canActivate: [AuthGuard], pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 

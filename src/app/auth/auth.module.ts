@@ -40,9 +40,8 @@ import { ForgotFormComponent } from './components/forgot-form/forgot-form.compon
 
 const authRoutes: Routes = [
   {
-    path: '', component: AuthComponent,
+    path: 'auth', component: AuthComponent,
     children: [
-      { path: '', redirectTo: '/login', pathMatch: 'full' },
       { path: 'login', component: LoginFormComponent },
       { path: 'forgot', component: ForgotFormComponent },
       { path: 'register', component: RegisterFormComponent }
