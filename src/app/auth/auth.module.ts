@@ -32,10 +32,22 @@ import { ForgotFormComponent } from './components/forgot-form/forgot-form.compon
 //   }
 // ];
 
+// const authRoutes: Routes = [
+//   { path: 'login', component: LoginFormComponent },
+//   { path: 'forgot', component: ForgotFormComponent },
+//   { path: 'register', component: RegisterFormComponent }
+// ];
+
 const authRoutes: Routes = [
-  { path: 'login', component: LoginFormComponent },
-  { path: 'forgot', component: ForgotFormComponent },
-  { path: 'register', component: RegisterFormComponent }
+  {
+    path: '', component: AuthComponent,
+    children: [
+      { path: '', redirectTo: '/login', pathMatch: 'full' },
+      { path: 'login', component: LoginFormComponent },
+      { path: 'forgot', component: ForgotFormComponent },
+      { path: 'register', component: RegisterFormComponent }
+    ]
+  }
 ];
 
 @NgModule({
