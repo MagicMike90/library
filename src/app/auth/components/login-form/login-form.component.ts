@@ -9,6 +9,9 @@ import { Authenticate } from '../../models/user';
 import * as fromAuth from '../../reducers';
 import * as Auth from '../../actions/auth';
 
+
+import {SpinnerComponent} from  '../../../shared/spinner/spinner.component';
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -40,13 +43,16 @@ export class LoginFormComponent implements OnInit {
   }
 
   open() {
-    console.log(this.content);
-    this.modalService.open(this.content);
+    const modalRef = this.modalService.open(SpinnerComponent);
+    console.log('modalRef',modalRef);
+    // this.modalService.open(this.content);
   }
 
   submit() {
+    this.open();
     if (this.form.valid) {
       this.form.disable();
+
       this.store.dispatch(new Auth.Login(this.form.value));
     }
   }
