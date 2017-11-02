@@ -1,6 +1,5 @@
 <section class="h-100">
   <div class="container h-100">
-    <div>{{error | async}}</div>
     <div class="row justify-content-md-center h-100">
       <div class="card-wrapper">
         <div class="brand">
@@ -10,12 +9,12 @@
         <div class="card fat">
           <div class="card-body">
             <h4 class="card-title">Login</h4>
-            <form [formGroup]="form" (ngSubmit)="submit()">
+            <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
 
               <div class="form-group">
                 <label for="email">E-Mail Address</label>
-
-                <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+                <input id="email" type="email" class="form-control" name="email" value="" formControlName="email">
+                <pre>valid? {{ form.controls.email.valid }}</pre>
               </div>
 
               <div class="form-group">
@@ -24,7 +23,8 @@
                     Forgot Password?
                   </a>
                 </label>
-                <input id="password" type="password" class="form-control" name="password" required data-eye>
+                <input id="password" type="password" class="form-control" name="password" formControlName="password">
+                <pre>valid? {{ form.controls.password.valid }}</pre>
               </div>
 
               <div class="form-group">
@@ -51,4 +51,6 @@
       </div>
     </div>
   </div>
+  <app-progress [open]="pending | async"></app-progress>
+
 </section>

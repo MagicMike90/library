@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-
+import { SharedModule } from '../shared/shared.module';
 import { AuthComponent } from './containers/auth.component';
 
 
@@ -55,6 +55,7 @@ const authRoutes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    SharedModule,
     // register additional route
     RouterModule.forChild(authRoutes),
     StoreModule.forFeature('auth', reducers),

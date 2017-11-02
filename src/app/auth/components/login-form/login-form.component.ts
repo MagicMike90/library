@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { Authenticate } from '../../models/user';
 import * as fromAuth from '../../reducers';
@@ -16,29 +18,35 @@ export class LoginFormComponent implements OnInit {
   pending: Observable<any>;
   error: Observable<any>;
 
+  @ViewChild('content') content;
 
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*")
+    ]),
+    password: new FormControl('', [Validators.minLength(8), Validators.required]),
   });
 
-  constructor(private store: Store<fromAuth.State>) {
+  constructor(private store: Store<fromAuth.State>, private modalService: NgbModal) {
     this.pending = this.store.select(fromAuth.getLoginPagePending);
     this.error = this.store.select(fromAuth.getLoginPageError);
 
-    this.form.disable();
-    // this.pending.subscribe(pending => pending ? this.form.disable() : this.form.enable());
+    // TEST : delay for form 
+    this.pending.delay(1000).subscribe(pending => pending ? this.form.disable() : this.form.enable());
   }
-  ngOnChanges(changes) {
+  ngOnInit() {
+    // this.form.disable();
+  }
 
+  open() {
+    console.log(this.content);
+    this.modalService.open(this.content);
   }
-  ngOnInit() { }
 
   submit() {
     if (this.form.valid) {
-      this.form.disable()
-      // console.log('submit', this.form.value);
-      // this.submitted.emit(this.form.value);
+      this.form.disable();
       this.store.dispatch(new Auth.Login(this.form.value));
     }
   }

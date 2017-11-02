@@ -38,6 +38,7 @@ import { AuthRoutingModule } from './auth/auth.module';
     // custom modules
     LayoutModule,
     PagesModule,
+    SharedModule,
     RouterModule.forRoot(RootRoutes),
     AuthRoutingModule,
 
