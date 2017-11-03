@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { MaterialUiModule } from '../material-ui/material-ui.module';
 
 import { SharedModule } from '../shared/shared.module';
 import { AuthComponent } from './containers/auth.component';
@@ -54,6 +55,7 @@ const authRoutes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    MaterialUiModule,
     SharedModule,
     // register additional route
     RouterModule.forChild(authRoutes),

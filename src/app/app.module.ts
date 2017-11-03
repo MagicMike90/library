@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import {
@@ -15,6 +14,8 @@ import { reducers, metaReducers } from './reducers';
 import { CustomRouterStateSerializer } from './shared/utils';
 
 import { MaterialUiModule } from './material-ui/material-ui.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
@@ -35,8 +36,9 @@ import { AuthRoutingModule } from './auth/auth.module';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgbModule.forRoot(),
     // custom modules
+    MaterialUiModule,
+    FlexLayoutModule,
     LayoutModule,
     PagesModule,
     SharedModule,
