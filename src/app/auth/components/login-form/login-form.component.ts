@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { Authenticate } from '../../models/user';
 import * as fromAuth from '../../reducers';
@@ -31,7 +30,7 @@ export class LoginFormComponent implements OnInit {
     password: new FormControl('', [Validators.minLength(8), Validators.required]),
   });
 
-  constructor(private store: Store<fromAuth.State>, private modalService: NgbModal) {
+  constructor(private store: Store<fromAuth.State>) {
     this.pending = this.store.select(fromAuth.getLoginPagePending);
     this.error = this.store.select(fromAuth.getLoginPageError);
 
@@ -42,14 +41,7 @@ export class LoginFormComponent implements OnInit {
     // this.form.disable();
   }
 
-  open() {
-    const modalRef = this.modalService.open(SpinnerComponent);
-    console.log('modalRef',modalRef);
-    // this.modalService.open(this.content);
-  }
-
   submit() {
-    this.open();
     if (this.form.valid) {
       this.form.disable();
 

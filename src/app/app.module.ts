@@ -14,6 +14,7 @@ import {
 import { reducers, metaReducers } from './reducers';
 import { CustomRouterStateSerializer } from './shared/utils';
 
+import { MaterialUiModule } from './material-ui/material-ui.module';
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
