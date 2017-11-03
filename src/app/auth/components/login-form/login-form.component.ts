@@ -9,7 +9,7 @@ import * as fromAuth from '../../reducers';
 import * as Auth from '../../actions/auth';
 
 
-import {SpinnerComponent} from  '../../../shared/spinner/spinner.component';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-login-form',
@@ -19,6 +19,8 @@ import {SpinnerComponent} from  '../../../shared/spinner/spinner.component';
 export class LoginFormComponent implements OnInit {
   pending: Observable<any>;
   error: Observable<any>;
+
+  hide: boolean = true;
 
   @ViewChild('content') content;
 

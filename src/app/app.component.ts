@@ -18,7 +18,7 @@ export class AppComponent {
   constructor(private router: Router) {}
   
   ngOnInit() {
-    console.log('configured routes: ', this.router.config);
+    // console.log('configured routes: ', this.router.config);
   }
   // constructor(private store: Store<fromRoot.State>) {
 		
