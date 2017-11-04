@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, Route } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from './reducers';
@@ -13,16 +14,24 @@ import * as layout from './layout/actions/layout';
 export class AppComponent {
   title = 'Library';
   public host_id: "LAYOUT_COMPONENT";
+  options: FormGroup;
 
-  
-  constructor(private router: Router) {}
-  
+
+  constructor(private router: Router, fb: FormBuilder) {
+    this.options = fb.group({
+      'color': 'primary',
+      'fontSize': [16, Validators.min(10)],
+    });
+  }
+  getFontSize() {
+    return Math.max(10, this.options.value.fontSize);
+  }
   ngOnInit() {
     // console.log('configured routes: ', this.router.config);
   }
   // constructor(private store: Store<fromRoot.State>) {
-		
-	// }
+
+  // }
 
   // closeSidenav() {
   //   /**
