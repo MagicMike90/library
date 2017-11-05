@@ -8,7 +8,7 @@ import { Authenticate } from '../../models/user';
 import * as fromAuth from '../../reducers';
 import * as Auth from '../../actions/auth';
 
-import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
+import { routerTransition } from '../../../animations/index';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 @Component({
@@ -35,7 +35,7 @@ export class LoginFormComponent implements OnInit {
 
     this.createForm();
   }
-  
+
   createForm() {
     this.form = new FormGroup({
       email: new FormControl('', [

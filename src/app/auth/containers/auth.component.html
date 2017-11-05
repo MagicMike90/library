@@ -1,5 +1,8 @@
 <!-- <app-login-form (submitted)="onSubmit($event)" [pending]="pending$ | async" [errorMessage]="error$ | async">
 </app-login-form> -->
 <div class="auth-page">
-    <router-outlet></router-outlet>
+  <!-- <div [@routerAnimation]="getRouterOutletState(route)"> -->
+  <router-outlet></router-outlet>
+  <!-- </div> -->
+  <!-- <router-outlet [@routerAnimations]="myOutlet.state" #myOutlet></router-outlet> -->
 </div>
