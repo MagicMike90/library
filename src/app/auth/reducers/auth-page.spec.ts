@@ -1,5 +1,5 @@
-import { reducer } from './login-page';
-import * as fromLoginPage from './login-page';
+import { reducer } from './auth-page';
+import * as fromLoginPage from './auth-page';
 import { Login, LoginSuccess, LoginFailure, Logout } from '../actions/auth';
 import { Authenticate, User } from '../models/user';
 

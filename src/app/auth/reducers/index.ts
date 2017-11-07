@@ -1,11 +1,11 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import * as fromRoot from '../../reducers';
 import * as fromAuth from './auth';
-import * as fromLoginPage from './login-page';
+import * as fromAuthPage from './auth-page';
 
 export interface AuthState {
   status: fromAuth.State;
-  loginPage: fromLoginPage.State;
+  authPage: fromAuthPage.State;
 }
 
 export interface State extends fromRoot.State {
@@ -14,7 +14,7 @@ export interface State extends fromRoot.State {
 
 export const reducers = {
   status: fromAuth.reducer,
-  loginPage: fromLoginPage.reducer,
+  authPage: fromAuthPage.reducer,
 };
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
@@ -31,13 +31,13 @@ export const getUser = createSelector(selectAuthStatusState, fromAuth.getUser);
 
 export const selectLoginPageState = createSelector(
   selectAuthState,
-  (state: AuthState) => state.loginPage
+  (state: AuthState) => state.authPage
 );
 export const getLoginPageError = createSelector(
   selectLoginPageState,
-  fromLoginPage.getError
+  fromAuthPage.getError
 );
 export const getLoginPagePending = createSelector(
   selectLoginPageState,
-  fromLoginPage.getPending
+  fromAuthPage.getPending
 );

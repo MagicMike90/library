@@ -3,6 +3,9 @@ import path from 'path';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import compression from 'compression';
+import mongoose from "mongoose";
+import passport from 'passport';
 import authCheckMiddleware from '../middlewares/requiredAuth';
 
 import auth from '../routes/auth';
@@ -13,29 +16,27 @@ import books from '../routes/books';
 
 
 const app = express();
-
-// app.set('view engine', 'html');
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, '/../../dist')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(express.static(path.join(__dirname, '/../../dist')));
-
-app.use('/api', authCheckMiddleware);
+app.use(passport.initialize());
 
 // pass the authorization checker middleware
-app.use('/auth', auth);
+app.use('/api', authCheckMiddleware);
+
+// add routes
 app.use('/', index);
+app.use('/auth', auth);
 app.use('/api/users', users);
 app.get('*', (req, res) => {
   console.log('route to no where');
   res.sendFile(path.resolve('dist/index.html'));
 });
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

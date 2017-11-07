@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "json": "json-server db.js -p 3500 -r mock-routes.json",
-    "dev:server": "NODE_ENV=development nodemon --watch server server/app.js --exec babel-node --presets es2015",
+    "dev:server": "DEBUG=* NODE_ENV=development nodemon --watch server server/app.js --exec babel-node --presets es2015",
     "dev:client": "ng serve"
   },
   "private": true,

@@ -1,4 +1,5 @@
 import * as auth from '../actions/auth';
+import * as register from '../actions/register';
 
 export interface State {
   error: string | null;
@@ -10,7 +11,7 @@ export const initialState: State = {
   pending: false,
 };
 
-export function reducer(state = initialState, action: auth.Actions): State {
+export function reducer(state = initialState, action: auth.Actions | register.Actions): State {
   switch (action.type) {
     case auth.LOGIN: {
       return {
@@ -29,6 +30,30 @@ export function reducer(state = initialState, action: auth.Actions): State {
     }
 
     case auth.LOGIN_FAILURE: {
+      return {
+        ...state,
+        error: action.payload,
+        pending: false,
+      };
+    }
+
+    case register.REGISTER: {
+      return {
+        ...state,
+        error: null,
+        pending: true,
+      };
+    }
+
+    case register.REGISTER_SUCCESS: {
+      return {
+        ...state,
+        error: null,
+        pending: false,
+      };
+    }
+
+    case register.REGISTER_FAILURE: {
       return {
         ...state,
         error: action.payload,

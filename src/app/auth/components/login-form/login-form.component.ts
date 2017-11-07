@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -19,9 +19,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 export class LoginFormComponent implements OnInit {
   pending: Observable<any>;
   error: Observable<any>;
-
-  hide: boolean = true;
-
+  hide = true;
   form: FormGroup;
 
   constructor(private store: Store<fromAuth.State>) {
@@ -29,7 +27,7 @@ export class LoginFormComponent implements OnInit {
     this.pending = this.store.select(fromAuth.getLoginPagePending);
     this.error = this.store.select(fromAuth.getLoginPageError);
 
-    // TEST : delay for form 
+    // TEST : delay for form
     this.pending.delay(1000).subscribe(pending => pending ? this.form.disable() : this.form.enable());
 
     this.createForm();
