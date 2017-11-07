@@ -7,32 +7,18 @@ import { User, Authenticate } from '../models/user';
 
 @Injectable()
 export class AuthService {
-  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  private api_endpoint = 'http://localhost:5000/api/heroes';  // URL to web api
+  private headers : HttpHeaders;
+  private api_endpoint = 'http://localhost:5000/auth';  // URL to web api
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.headers = new HttpHeaders();
+    this.headers.set('Content-Type','application/json');
+    this.headers.set("Application-Names", ["exampleApp", "proAngular"]);
+  }
 
-  // login({ username, password }: Authenticate) {
-  //   /**
-  //    * Simulate a failed login to display the error
-  //    * message for the login form.
-  //    */
-  //   // if (username !== 'test') {
-  //   //   return _throw('Invalid username or password');
-  //   // }
-
-  //   return of({ name: 'User' });
-  // }
   login(user: Authenticate) {
-    /**
-     * Simulate a failed login to display the error
-     * message for the login form.
-     */
-    // if (username !== 'test') {
-    //   return _throw('Invalid username or password');
-    // }
-    return this.http.post(this.api_endpoint, JSON.stringify(user), { headers: this.headers });
-    // return of({ name: 'User' });
+    const sign_in_url = this.api_endpoint + "/signin"
+    return this.http.post(sign_in_url, JSON.stringify(user), { headers: this.headers });
   }
 
   logout() {

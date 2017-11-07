@@ -82,7 +82,7 @@ exports.signin = function (req, res, next) {
 
         try {
             // sign with RSA SHA256
-            var cert = fs.readFileSync(path.join(__dirname, '/../../key/jwtRS256.key')); // get private key
+            var cert = fs.readFileSync(path.join(__dirname, '/../../RS256/jwtRS256.key')); // get private key
 
             // create a token string
             const token = jwt.sign(payload, cert, {
