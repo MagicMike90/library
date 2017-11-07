@@ -8,7 +8,6 @@ import { Authenticate } from '../../models/user';
 import * as fromAuth from '../../reducers';
 import * as Auth from '../../actions/auth';
 
-import { routerTransition } from '../../../animations/index';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 @Component({

@@ -2,7 +2,13 @@
 </app-login-form> -->
 <div class="auth-page">
   <!-- <div [@routerAnimation]="getRouterOutletState(route)"> -->
-  <router-outlet></router-outlet>
+  <!-- <router-outlet></router-outlet> -->
   <!-- </div> -->
-  <!-- <router-outlet [@routerAnimations]="myOutlet.state" #myOutlet></router-outlet> -->
+  <!-- <router-outlet [@fadeInAnimation]="myOutlet.state" #myOutlet></router-outlet> -->
+  <!-- <div class="route-container" [@fadeInAnimation]>
+    <router-outlet></router-outlet>
+  </div> -->
+  <div [@routerTransition]="prepareRouteTransition(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>

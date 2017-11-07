@@ -11,7 +11,7 @@ import * as fromAuth from '../reducers';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private store: Store<fromAuth.State>, private router: Router) { 
+  constructor(private store: Store<fromAuth.State>, private router: Router) {
     console.log('AuthGuard');
   }
 
@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
       .select(fromAuth.getLoggedIn)
       .map(authed => {
         if (!authed) {
-          this.store.dispatch(new Auth.LoginRedirect()); 
+          this.store.dispatch(new Auth.LoginRedirect());
           return false;
         }
         return true;

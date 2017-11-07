@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
-import { Router, Route } from "@angular/router";
+import { Router, Route } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from './reducers';
 import * as layout from './layout/actions/layout';
 
+import { routerTransition } from './animations/router.animation';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss'],
+  animations: [routerTransition]
 })
 export class AppComponent {
   title = 'Library';
-  public host_id: "LAYOUT_COMPONENT";
   options: FormGroup;
 
 
@@ -26,8 +28,8 @@ export class AppComponent {
   getFontSize() {
     return Math.max(10, this.options.value.fontSize);
   }
-  ngOnInit() {
-    // console.log('configured routes: ', this.router.config);
+  prepareRouteTransition(outlet) {
+    return outlet.isActivated ? outlet.activatedRoute : '';
   }
   // constructor(private store: Store<fromRoot.State>) {
 

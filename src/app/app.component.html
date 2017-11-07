@@ -1,4 +1,6 @@
 <main class="h-100">
-  <router-outlet></router-outlet>
+  <div [@routerTransition]="prepareRouteTransition(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+  <!-- <router-outlet></router-outlet> -->
 </main>
-
