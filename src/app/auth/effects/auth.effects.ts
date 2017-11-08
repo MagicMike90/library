@@ -30,7 +30,7 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   loginSuccess = this.actions
     .ofType(Auth.LOGIN_SUCCESS)
-    .do(() => this.router.navigate(['/dashboard']));
+    .do(() => this.router.navigate(['/app']));
 
   @Effect({ dispatch: false })
   loginRedirect = this.actions
@@ -57,7 +57,7 @@ export class AuthEffects {
   registerSuccess = this.actions
     .ofType(Registration.REGISTER_SUCCESS)
     .do(authed => {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/app']);
     });
 
   constructor(

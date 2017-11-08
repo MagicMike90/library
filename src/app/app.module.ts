@@ -10,28 +10,26 @@ import {
   StoreRouterConnectingModule,
   RouterStateSerializer,
 } from '@ngrx/router-store';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { reducers, metaReducers } from './reducers';
 import { CustomRouterStateSerializer } from './shared/utils';
 
 import { MaterialUiModule } from './material-ui/material-ui.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { LayoutModule } from './layout/layout.module';
+import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+
 
 import { AuthRoutingModule } from './auth/auth.module';
-
+import { AppRoutingModule } from './app-routing.module';
 // import order matters for NgModules.
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +41,7 @@ import { AuthRoutingModule } from './auth/auth.module';
     // custom modules
     MaterialUiModule,
     FlexLayoutModule,
-    LayoutModule,
+    CoreModule,
 
     // feature modules
     PagesModule,

@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CustomersComponent } from './pages/customers/customers.component';
+// import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ContainersComponent } from './core/containers/containers.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { AuthGuard } from './auth/guards/auth.guard';
 
 const RootRoutes: Routes = [
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], pathMatch: 'full' },
-    { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: 'app', component: ContainersComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+    { path: '', redirectTo: '/app', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 

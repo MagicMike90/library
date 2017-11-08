@@ -1,6 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { EmitterService } from '../../shared/services//emitter.service';
+
 
 @Component({
   moduleId: module.id,
@@ -12,7 +12,6 @@ export class HeaderComponent implements OnInit {
   title = 'Hero Portal';
   open: Boolean;
 
-  @Input() id: string;
 
   ngOnInit() {
   }
@@ -20,6 +19,5 @@ export class HeaderComponent implements OnInit {
   toggleSidenav() {
     console.log('toggleSidenav');
     this.open = !this.open;
-    EmitterService.get(this.id).emit(this.open);
   }
 }

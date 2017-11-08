@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
-
+const map_geo_json = '../../../assets/geojson/custom.geo.json';
 @Component({
   moduleId: module.id,
   selector: 'app-dashboard',
@@ -18,13 +18,13 @@ export class DashboardComponent implements OnInit {
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
   private geojson: GeoJSON.FeatureCollection<any>;
-  private url: string = "../../../assets/geojson/custom.geo.json";
+
 
   constructor(private http: Http) { }
 
   ngOnInit() {
 
-    this.http.get(this.url)
+    this.http.get(map_geo_json)
       .subscribe(res => this.geojson = res.json());
     // // give everything a chance to get loaded before starting the animation to reduce choppiness
     // setTimeout(() => {

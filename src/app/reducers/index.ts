@@ -24,7 +24,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
  * notation packages up all of the exports into a single object.
  */
 
-import * as fromLayout from '../layout/reducers/layout';
+import * as fromLayout from '../core/reducers/layout';
 
 /**
  * As mentioned, we treat each reducer like a table in a database. This means

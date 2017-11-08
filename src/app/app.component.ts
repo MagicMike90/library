@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import * as fromRoot from './reducers';
-import * as layout from './layout/actions/layout';
+import * as layout from './core/actions/layout';
 
 import { routerTransition } from './animations/router.animation';
 

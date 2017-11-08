@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
@@ -44,7 +43,7 @@ const authRoutes: Routes = [
     path: 'auth', component: AuthComponent,
     children: [
       { path: 'login', component: LoginFormComponent },
-      { path: 'forgot', component: ForgotFormComponent},
+      { path: 'forgot', component: ForgotFormComponent },
       { path: 'register', component: RegisterFormComponent }
     ]
   }

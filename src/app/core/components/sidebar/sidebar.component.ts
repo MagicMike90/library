@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges, OnDestroy, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Subscription } from 'rxjs/Subscription';
-import { EmitterService } from '../../shared/services//emitter.service';
 
 class Menu {
   label: String;
@@ -12,7 +11,6 @@ class Menu {
 const PRINT_MOBILE = 'print and (max-width: 600px)';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
@@ -45,7 +43,6 @@ export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
   ngOnChanges() {
-    EmitterService.get(this.id).subscribe(open => this.open = open);
   }
   ngOnDestroy() {
     this.watcher.unsubscribe();
@@ -69,7 +66,7 @@ export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
     ];
 
     this.router.events.subscribe((val) => {
-      // see also 
+      // see also
       if (val instanceof NavigationEnd) {
         this.selectedLink = window.location.pathname;
       }
