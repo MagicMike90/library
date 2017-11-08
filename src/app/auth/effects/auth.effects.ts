@@ -10,7 +10,7 @@ import { of } from 'rxjs/observable/of';
 
 import { AuthService } from '../services/auth.service';
 import * as Auth from '../actions/auth';
-import * as Register from '../actions/register';
+import * as Registration from '../actions/registration';
 
 @Injectable()
 export class AuthEffects {
@@ -37,9 +37,20 @@ export class AuthEffects {
       this.router.navigate(['/auth/login']);
     });
 
+  @Effect()
+  register = this.actions
+    .ofType(Registration.REGISTER)
+    .map((action: Registration.Signup) => action.payload)
+    .exhaustMap(auth =>
+      this.authService
+        .register(auth)
+        .map(user => new Registration.SignupSuccess({ user }))
+        .catch(error => of(new Registration.SignupFailure(error)))
+    );
+
   @Effect({ dispatch: false })
-  registerRedirect = this.actions
-    .ofType(Register.REGISTER_SUCCESS)
+  registerSuccess = this.actions
+    .ofType(Registration.REGISTER_SUCCESS)
     .do(authed => {
       this.router.navigate(['/dashboard']);
     });

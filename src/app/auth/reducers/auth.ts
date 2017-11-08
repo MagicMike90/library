@@ -1,5 +1,5 @@
 import * as auth from '../actions/auth';
-import * as register from '../actions/register';
+import * as registration from '../actions/registration';
 import { User } from '../models/user';
 
 export interface State {
@@ -12,7 +12,7 @@ export const initialState: State = {
   user: null,
 };
 
-export function reducer(state = initialState, action: auth.Actions | register.Actions): State {
+export function reducer(state = initialState, action: auth.Actions | registration.Actions): State {
   switch (action.type) {
     case auth.LOGIN_SUCCESS: {
       return {
@@ -26,7 +26,7 @@ export function reducer(state = initialState, action: auth.Actions | register.Ac
       return initialState;
     }
 
-    case register.REGISTER_SUCCESS: {
+    case registration.REGISTER_SUCCESS: {
       return {
         ...state,
         loggedIn: true,

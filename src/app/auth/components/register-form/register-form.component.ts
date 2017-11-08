@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Authenticate } from '../../models/user';
 import * as fromAuth from '../../reducers';
-import * as Auth from '../../actions/auth';
+import * as Registration from '../../actions/registration';
 
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -36,6 +36,8 @@ export class RegisterFormComponent implements OnInit {
 
   createForm() {
     this.form = new FormGroup({
+      name: new FormControl('', [
+        Validators.required]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(EMAIL_REGEX)]),
@@ -48,7 +50,7 @@ export class RegisterFormComponent implements OnInit {
   submit() {
     if (this.form.valid) {
       this.form.disable();
-      this.store.dispatch(new Auth.Login(this.form.value));
+      this.store.dispatch(new Registration.Signup(this.form.value));
     }
   }
 }

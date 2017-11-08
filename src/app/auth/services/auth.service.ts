@@ -18,12 +18,12 @@ export class AuthService {
 
   register(user: Authenticate) {
     const sign_in_url = this.api_endpoint + '/signup';
-    return this.http.post(sign_in_url, JSON.stringify(user), { headers: this.headers });
+    return this.http.post(sign_in_url, user, { headers: this.headers });
   }
 
   login(user: Authenticate) {
     const sign_in_url = this.api_endpoint + '/signin';
-    return this.http.post(sign_in_url, JSON.stringify(user), { headers: this.headers });
+    return this.http.post(sign_in_url, user, { headers: this.headers });
   }
 
   logout() {
