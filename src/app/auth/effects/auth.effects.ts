@@ -12,6 +12,8 @@ import { AuthService } from '../services/auth.service';
 import * as Auth from '../actions/auth';
 import * as Registration from '../actions/registration';
 
+import AuthStore from '../auth.store';
+
 @Injectable()
 export class AuthEffects {
   @Effect()
@@ -44,7 +46,10 @@ export class AuthEffects {
     .exhaustMap(auth =>
       this.authService
         .register(auth)
-        .map(user => new Registration.SignupSuccess({ user }))
+        .map(user => {
+          AuthStore.authenticateUser(user.token);
+          return new Registration.SignupSuccess({ user });
+        })
         .catch(error => of(new Registration.SignupFailure(error)))
     );
 

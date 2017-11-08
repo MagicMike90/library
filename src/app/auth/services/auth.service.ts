@@ -16,7 +16,7 @@ export class AuthService {
     this.headers.set('Application-Names', ['store', 'auth']);
   }
 
-  register(user: Authenticate) {
+  register(user: Authenticate): any {
     const sign_in_url = this.api_endpoint + '/signup';
     return this.http.post(sign_in_url, user, { headers: this.headers });
   }

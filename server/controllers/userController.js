@@ -67,6 +67,15 @@ function validateLoginForm(payload) {
         errors
     };
 }
+const generateToken = (payload) => {
+    // sign with RSA SHA256
+    var cert = fs.readFileSync(path.join(__dirname, '/../../RS256/jwtRS256.key')); // get private key
+
+    // create a token string
+    return jwt.sign(payload, cert, {
+      algorithm: 'RS256'
+    });
+} 
 exports.signin = function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
         if (err) {
@@ -80,20 +89,14 @@ exports.signin = function (req, res, next) {
             sub: user._id
         };
 
+        const token = generateToken(payload);
         try {
-            // sign with RSA SHA256
-            var cert = fs.readFileSync(path.join(__dirname, '/../../RS256/jwtRS256.key')); // get private key
-
-            // create a token string
-            const token = jwt.sign(payload, cert, {
-                algorithm: 'RS256'
-            });
+   
             const data = {
                 name: user.name
             };
 
-            return res.json({
-                success: true,
+            return res.status(200).json({
                 message: 'You have successfully logged in!',
                 token,
                 user: data
@@ -131,8 +134,14 @@ exports.signup = function (req, res, next) {
                     message: message
                 });
             }
+            const payload = {
+                sub: user._id
+            };
+            const token = generateToken(payload);
+
             return res.status(200).json({
-                message: "User was created successfully"
+                message: "User was created successfully",
+                token
             });
         });
     })(req, res, next);
