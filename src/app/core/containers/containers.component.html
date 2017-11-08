@@ -1,9 +1,22 @@
-<div class="wrapper">
-  <app-sidebar [id]="host_id"></app-sidebar>
-  <div id="content" class="main-content mat-typography">
-    <app-header [id]="host_id"></app-header>
-    <div class="layout-content">
-      <router-outlet></router-outlet>
-    </div>
+<!-- <mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav class="example-sidenav">
+    Jolly good!
+  </mat-sidenav>
+
+  <div class="example-sidenav-content">
+    <app-header></app-header>
   </div>
-</div>
+
+</mat-sidenav-container> -->
+<mat-sidenav-container class="app-container">
+  <mat-sidenav #sidenav class="app-sidenav">
+    Jolly good!
+  </mat-sidenav>
+
+  <div class="app-sidenav-content">
+    <button type="button" mat-button (click)="sidenav.open()">
+      Open sidenav
+    </button>
+  </div>
+
+</mat-sidenav-container>

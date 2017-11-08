@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 
 import * as Auth from '../actions/auth';
 import * as fromAuth from '../reducers';
+import AuthStore from '../auth.store';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -19,7 +20,8 @@ export class AuthGuard implements CanActivate {
     return this.store
       .select(fromAuth.getLoggedIn)
       .map(authed => {
-        if (!authed) {
+        // if (!authed) {
+        if (!AuthStore.isUserAuthenticated()) {
           this.store.dispatch(new Auth.LoginRedirect());
           return false;
         }
