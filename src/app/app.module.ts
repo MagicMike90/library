@@ -20,7 +20,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
-import { RootRoutes } from './app-routing';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -44,10 +44,12 @@ import { AuthRoutingModule } from './auth/auth.module';
     MaterialUiModule,
     FlexLayoutModule,
     LayoutModule,
+
+    // feature modules
     PagesModule,
     SharedModule,
-    RouterModule.forRoot(RootRoutes),
     AuthRoutingModule,
+    AppRoutingModule,
 
     /**
    * StoreModule.forRoot is imported once in the root module, accepting a reducer

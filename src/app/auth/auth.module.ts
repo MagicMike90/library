@@ -60,7 +60,7 @@ const authRoutes: Routes = [
     MaterialUiModule,
     SharedModule,
     // register additional route
-    RouterModule.forChild(authRoutes),
+    RouterModule.forRoot(authRoutes),
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([AuthEffects])
   ],

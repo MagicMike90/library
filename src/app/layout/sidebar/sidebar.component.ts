@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { MediaChange, ObservableMedia } from "@angular/flex-layout";
-import { Subscription } from "rxjs/Subscription";
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { Subscription } from 'rxjs/Subscription';
 import { EmitterService } from '../../shared/services//emitter.service';
 
 class Menu {
@@ -19,9 +19,9 @@ const PRINT_MOBILE = 'print and (max-width: 600px)';
 })
 
 
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
   watcher: Subscription;
-  activeMediaQuery = "";
+  activeMediaQuery: string;
   mode: String;
   open: Boolean;
 
@@ -34,11 +34,10 @@ export class SidebarComponent implements OnInit {
 
     this.watcher = media.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : "";
-      if (change.mqAlias == 'sm' || change.mqAlias == 'xs') {
+      if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.mode = 'over';
         this.open = false;
-      }
-      else {
+      } else {
         this.mode = 'side';
         this.open = true;
       }
