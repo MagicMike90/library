@@ -31,7 +31,7 @@ export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private router: Router, public media: ObservableMedia) {
 
     this.watcher = media.subscribe((change: MediaChange) => {
-      this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : "";
+      this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.mode = 'over';
         this.open = false;

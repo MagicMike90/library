@@ -1,18 +1,21 @@
-/* .app-container {
+.app-container {
   border: 1px solid rgba(0, 0, 0, 0.5);
   height: 100%;
-} */
+}
 
-/* .app-sidenav-content {
+.app-sidenav-content {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
-} */
+}
 
-/* .app-sidenav {
+.app-sidenav {
   padding: 20px;
-} */
+}
 mat-sidenav {
   width: 200px;
+}
+.mat-drawer-content {
+  margin-left: 200px;
 }

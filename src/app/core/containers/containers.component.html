@@ -4,24 +4,25 @@
   </mat-sidenav>
 
   <div class="example-sidenav-content">
-    <app-header></app-header>
+    <app-toolbar></app-toolbar>
   </div>
 
 </mat-sidenav-container> -->
-<!-- <mat-sidenav-container class="app-container">
-  <mat-sidenav #sidenav mode="side" opened="true" class="app-sidenav">
-    Jolly good!
-  </mat-sidenav>
 
-  <div class="my-content">
-    <app-header></app-header>
-  </div>
 
-</mat-sidenav-container> -->
 <mat-sidenav-container>
-  <app-drawer></app-drawer>
+  <mat-sidenav #sidenav [mode]="mode" [opened]="openSidenav">
+    <mat-nav-list *ngFor="let menu of menus">
+      <mat-list-item routerLink={{menu.link}} [class.selected]="menu.link === selectedLink" (click)="onSelect(menu.link)" matTooltip={{menu.label}}
+        matTooltipPosition="right">
+        <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+        <h4 mat-line>{{menu.label}}</h4>
+      </mat-list-item>
+    </mat-nav-list>
+
+  </mat-sidenav>
   <div class="my-content">
     <app-toolbar></app-toolbar>
-    Main content
+    <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>

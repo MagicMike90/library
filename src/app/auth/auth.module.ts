@@ -10,7 +10,6 @@ import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { SharedModule } from '../shared/shared.module';
 import { AuthComponent } from './containers/auth.component';
 
-
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthEffects } from './effects/auth.effects';

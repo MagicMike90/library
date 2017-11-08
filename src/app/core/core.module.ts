@@ -14,6 +14,7 @@ import { DrawerComponent } from './components/drawer/drawer.component';
   imports: [
     CommonModule, RouterModule, MaterialUiModule
   ],
+  exports: [ContainersComponent],
   declarations: [ContainersComponent, ToolbarComponent, DrawerComponent]
 })
 export class CoreModule { }

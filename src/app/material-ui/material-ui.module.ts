@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import {
   MatCardModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
-  MatIconModule, MatSelectModule, MatRadioModule, MatToolbarModule, MatSidenavModule
+  MatIconModule, MatSelectModule, MatRadioModule, MatToolbarModule, MatSidenavModule,
+  MatListModule, MatTooltipModule, MatMenuModule
 } from '@angular/material';
 
 @NgModule({
@@ -18,7 +19,10 @@ import {
     MatSelectModule,
     MatRadioModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule,
+    MatTooltipModule,
+    MatMenuModule
   ],
   exports: [
     MatCardModule,
@@ -30,7 +34,10 @@ import {
     MatSelectModule,
     MatRadioModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule,
+    MatTooltipModule,
+    MatMenuModule
   ],
   declarations: []
 })
