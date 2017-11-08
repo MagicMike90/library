@@ -9,7 +9,6 @@ import * as fromAuth from '../../reducers';
 import * as Auth from '../../actions/auth';
 
 
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 @Component({
   moduleId: module.id,
   selector: 'app-login-form',
@@ -19,8 +18,11 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 export class LoginFormComponent implements OnInit {
   pending: Observable<any>;
   error: Observable<any>;
+
   hide = true;
   form: FormGroup;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.minLength(8), Validators.required]);
 
   constructor(private store: Store<fromAuth.State>) {
 
@@ -35,14 +37,22 @@ export class LoginFormComponent implements OnInit {
 
   createForm() {
     this.form = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern(EMAIL_REGEX)]),
-      password: new FormControl('', [Validators.minLength(8), Validators.required]),
+      email:this.email,
+      password: this.password,
     });
   }
   ngOnInit() {
     // this.form.disable();
+  }
+
+  getErrorMessage(type) {
+    let errors = {};
+    errors["email"] = (this.email.hasError('required') ? 'You must enter a value' :
+    this.email.hasError('email') ? 'Not a valid email' : '');
+
+    errors["password"] = (this.email.hasError('required') ? 'You must enter a value' :
+    this.password.hasError('minLength') ? 'Not a valid password' : '');
+    return errors[type];
   }
 
   submit() {

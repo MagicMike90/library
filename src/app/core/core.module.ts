@@ -5,15 +5,15 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MaterialUiModule } from '../material-ui/material-ui.module';
 
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ContainersComponent } from './containers/containers.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { DrawerComponent } from './components/drawer/drawer.component';
 
 
 @NgModule({
   imports: [
     CommonModule, RouterModule, MaterialUiModule
   ],
-  declarations: [ContainersComponent, HeaderComponent, SidebarComponent]
+  declarations: [ContainersComponent, ToolbarComponent, DrawerComponent]
 })
 export class CoreModule { }
