@@ -8,7 +8,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { AuthGuard } from './auth/guards/auth.guard';
 
 const RootRoutes: Routes = [
-    { path: 'app', component: ContainersComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+    { path: 'app', component: ContainersComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: '/app', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

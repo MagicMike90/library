@@ -23,7 +23,10 @@ export class AuthEffects {
     .exhaustMap(auth =>
       this.authService
         .login(auth)
-        .map(user => new Auth.LoginSuccess({ user }))
+        .map(user => {
+          AuthStore.authenticateUser(user.token);
+          return new Auth.LoginSuccess({ user })
+        })
         .catch(error => of(new Auth.LoginFailure(error)))
     );
 

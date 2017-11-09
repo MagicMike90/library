@@ -21,7 +21,7 @@ export class AuthService {
     return this.http.post(sign_in_url, user, { headers: this.headers });
   }
 
-  login(user: Authenticate) {
+  login(user: Authenticate): any {
     const sign_in_url = this.api_endpoint + '/signin';
     return this.http.post(sign_in_url, user, { headers: this.headers });
   }
