@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, JsonpModule } from "@angular/http"
 
 import { SharedModule } from '../shared/shared.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { BookService } from "./services/book.service";
@@ -25,13 +24,10 @@ import { CustomersComponent } from './customers/customers.component';
   ],
   declarations: [
     PageNotFoundComponent,
-    DashboardComponent,
     CustomersComponent,
 
   ],
   exports: [
-
-    DashboardComponent,
     CustomersComponent
   ],
   providers: [

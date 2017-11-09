@@ -12,7 +12,7 @@ import { DrawerComponent } from './components/drawer/drawer.component';
 
 @NgModule({
   imports: [
-    CommonModule, RouterModule, MaterialUiModule
+    CommonModule, RouterModule, MaterialUiModule,
   ],
   exports: [ContainersComponent],
   declarations: [ContainersComponent, ToolbarComponent, DrawerComponent]
