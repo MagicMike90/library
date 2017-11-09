@@ -7,40 +7,25 @@ import {
   MatListModule, MatTooltipModule, MatMenuModule, MatTabsModule
 } from '@angular/material';
 
+export const MODULES = [
+  CommonModule,
+  MatCardModule,
+  MatButtonModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatIconModule,
+  MatSelectModule,
+  MatRadioModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
+  MatTooltipModule,
+  MatMenuModule,
+  MatTabsModule
+];
 @NgModule({
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTooltipModule,
-    MatMenuModule,
-    MatTabsModule
-  ],
-  exports: [
-    MatCardModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatTooltipModule,
-    MatMenuModule,
-    MatTabsModule
-  ],
-  declarations: []
+  imports: MODULES,
+  exports: MODULES,
 })
 export class MaterialUiModule { }

@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">
-  <img class="logo" src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" />
+  <button class="burger" mat-icon-button (click)="toggleMenu.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- <img class="logo" src="https://material.angular.io/assets/img/homepage/angular-white-transparent.svg" /> -->
   <span>{{title}}</span>
   <span class="example-spacer"></span>
   <button mat-icon-button>

@@ -48,6 +48,13 @@ const authRoutes: Routes = [
   }
 ];
 
+export const COMPONENTS = [
+  AuthComponent,
+  LoginFormComponent,
+  RegisterFormComponent,
+  ForgotFormComponent
+];
+
 @NgModule({
   imports: [
     CommonModule,
@@ -62,7 +69,8 @@ const authRoutes: Routes = [
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature([AuthEffects])
   ],
-  declarations: [AuthComponent, LoginFormComponent, RegisterFormComponent, ForgotFormComponent],
+  exports: COMPONENTS,
+  declarations: COMPONENTS,
   providers: [AuthService, AuthGuard]
 })
 

@@ -10,11 +10,17 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 
 
+export const COMPONENTS = [
+  ContainersComponent,
+  ToolbarComponent,
+  DrawerComponent
+];
+
 @NgModule({
   imports: [
     CommonModule, RouterModule, MaterialUiModule,
   ],
-  exports: [ContainersComponent],
-  declarations: [ContainersComponent, ToolbarComponent, DrawerComponent]
+  exports: COMPONENTS,
+  declarations: COMPONENTS
 })
 export class CoreModule { }

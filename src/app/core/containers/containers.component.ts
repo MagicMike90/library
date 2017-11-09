@@ -1,6 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { Subscription } from 'rxjs/Subscription';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/let';
+
+import * as layout from '../actions/layout';
+import * as rootReducer from '../../reducers';
 
 
 const PRINT_MOBILE = 'print and (max-width: 600px)';
@@ -12,11 +18,13 @@ const PRINT_MOBILE = 'print and (max-width: 600px)';
 export class ContainersComponent implements OnInit, OnDestroy {
   private menus: any;
   private mode: string;
-  private openSidenav: boolean;
   private watcher: Subscription;
   private activeMediaQuery: string;
 
-  constructor(private media: ObservableMedia) { }
+  private showSidenav: Observable<boolean>;
+  private loggedIn: Observable<boolean>;
+
+  constructor(private media: ObservableMedia, private store: Store<rootReducer.State>) { }
 
   ngOnInit() {
     // windows observer event
@@ -24,20 +32,16 @@ export class ContainersComponent implements OnInit, OnDestroy {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.mode = 'over';
-        this.openSidenav = false;
       } else {
         this.mode = 'side';
-        this.openSidenav = true;
       }
     });
 
     const is_mobile = this.media.isActive('xs') || this.media.isActive('sm');
     if (is_mobile && !this.media.isActive(PRINT_MOBILE)) {
       this.mode = 'push';
-      this.openSidenav = false;
     } else {
       this.mode = 'side';
-      this.openSidenav = true;
     }
 
     this.menus = [
@@ -48,16 +52,31 @@ export class ContainersComponent implements OnInit, OnDestroy {
       { label: 'Categories', icon: 'bookmark', link: '/categories' },
     ];
 
-    // this.router.events.subscribe((val) => {
-    //   // see also
-    //   if (val instanceof NavigationEnd) {
-    //     this.selectedLink = window.location.pathname;
-    //   }
-    //   // console.log(val instanceof NavigationEnd)
-    // });
+    /**
+     * Selectors can be applied with the `select` operator which passes the state
+     * tree to the provided selector
+     */
+    this.showSidenav = this.store.select(rootReducer.getShowSidenav);
+    // this.loggedIn = this.store.select(fromAuth.getLoggedIn);
   }
   ngOnDestroy() {
     this.watcher.unsubscribe();
   }
 
+  toggleSidenav() {
+    this.store.dispatch(new layout.ToggleSidenav());
+  }
+  closeSidenav() {
+    /**
+     * All state updates are handled through dispatched actions in 'container'
+     * components. This provides a clear, reproducible history of state
+     * updates and user interaction through the life of our
+     * application.
+     */
+    this.store.dispatch(new layout.CloseSidenav());
+  }
+
+  openSidenav() {
+    this.store.dispatch(new layout.OpenSidenav());
+  }
 }

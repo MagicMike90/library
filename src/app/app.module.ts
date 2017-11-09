@@ -18,12 +18,13 @@ import { CustomRouterStateSerializer } from './shared/utils';
 import { MaterialUiModule } from './material-ui/material-ui.module';
 
 import { CoreModule } from './core/core.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
 
-import { DashboardModule } from './dashboard/dashboard.module';
 import { AuthRoutingModule } from './auth/auth.module';
 import { AppRoutingModule } from './app-routing.module';
 // import order matters for NgModules.
