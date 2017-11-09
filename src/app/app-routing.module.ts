@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/containers/dashboard.component';
 import { ContainersComponent } from './core/containers/containers.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { AuthGuard } from './auth/guards/auth.guard';
 
 const RootRoutes: Routes = [
-    { path: 'app', component: ContainersComponent, canActivate: [AuthGuard] },
+    {
+        path: 'app', component: ContainersComponent, canActivate: [AuthGuard],
+        children: [
+            { path: 'dashboard', component: DashboardComponent }
+        ]
+    },
     { path: '', redirectTo: '/app', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

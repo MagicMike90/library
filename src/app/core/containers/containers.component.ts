@@ -18,6 +18,7 @@ const PRINT_MOBILE = 'print and (max-width: 600px)';
 export class ContainersComponent implements OnInit, OnDestroy {
   private menus: any;
   private mode: string;
+  private open: boolean;
   private watcher: Subscription;
   private activeMediaQuery: string;
 
@@ -32,31 +33,35 @@ export class ContainersComponent implements OnInit, OnDestroy {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.mode = 'over';
+        this.open = false;
       } else {
         this.mode = 'side';
+        this.open = true;
       }
     });
 
-    const is_mobile = this.media.isActive('xs') || this.media.isActive('sm');
-    if (is_mobile && !this.media.isActive(PRINT_MOBILE)) {
-      this.mode = 'push';
-    } else {
-      this.mode = 'side';
-    }
-
     this.menus = [
-      { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
-      { label: 'Customers', icon: 'people', link: '/customers' },
-      { label: 'Segments', icon: 'label', link: '/segments' },
-      { label: 'Orders', icon: 'receipt', link: '/orders' },
-      { label: 'Categories', icon: 'bookmark', link: '/categories' },
+      { label: 'Dashboard', icon: 'dashboard', link: '/app/dashboard' },
+      { label: 'Customers', icon: 'people', link: '/app/customers' },
+      { label: 'Segments', icon: 'label', link: '/app/segments' },
+      { label: 'Orders', icon: 'receipt', link: '/app/orders' },
+      { label: 'Categories', icon: 'bookmark', link: '/app/categories' },
     ];
 
     /**
      * Selectors can be applied with the `select` operator which passes the state
      * tree to the provided selector
      */
-    this.showSidenav = this.store.select(rootReducer.getShowSidenav);
+    this.store.select(rootReducer.getShowSidenav).subscribe(open => {
+      const is_mobile = this.media.isActive('xs') || this.media.isActive('sm');
+      if (is_mobile && !this.media.isActive(PRINT_MOBILE)) {
+        this.mode = 'over';
+        this.open = open;
+      } else { // desktop mode
+        this.mode = 'side';
+        this.open = true;
+      }
+    });
     // this.loggedIn = this.store.select(fromAuth.getLoggedIn);
   }
   ngOnDestroy() {

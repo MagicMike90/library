@@ -42,9 +42,10 @@ import { AppRoutingModule } from './app-routing.module';
     // custom modules
     MaterialUiModule,
     FlexLayoutModule,
-    CoreModule,
 
     // feature modules
+    CoreModule,
+    DashboardModule,
     PagesModule,
     SharedModule,
     AuthRoutingModule,
