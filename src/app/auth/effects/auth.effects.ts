@@ -33,7 +33,7 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   loginSuccess = this.actions
     .ofType(Auth.LOGIN_SUCCESS)
-    .do(() => this.router.navigate(['/app']));
+    .do(() => this.router.navigate(['/app/dashboard']));
 
   @Effect({ dispatch: false })
   loginRedirect = this.actions

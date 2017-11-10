@@ -13,9 +13,11 @@
 .app-sidenav {
   padding: 20px;
 }
+
 mat-sidenav {
   width: 200px;
 }
-.mat-drawer-content {
-  margin-left: 200px;
+
+.content {
+  margin: 0px 15px;
 }

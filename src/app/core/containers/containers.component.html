@@ -8,8 +8,11 @@
     </mat-nav-list>
 
   </mat-sidenav>
-  <div class="my-content">
+  <div class="content-container">
     <app-toolbar (toggleMenu)="toggleSidenav()"></app-toolbar>
-    <router-outlet></router-outlet>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+
   </div>
 </mat-sidenav-container>

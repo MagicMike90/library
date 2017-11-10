@@ -1,4 +1,23 @@
 <mat-tab-group>
-  <mat-tab label="Tab 1">Content 1</mat-tab>
-  <mat-tab label="Tab 2">Content 2</mat-tab>
+  <mat-tab label="Sale Summary">
+    <div fxLayout='row' fxLayoutGap="20px">
+      <div fxFlex="25" class="item">
+      </div>
+      <div fxFlex="25" class="item">
+      </div>
+      <div fxFlex="25" class="item">
+      </div>
+      <div fxFlex="25" class="item">
+      </div>
+    </div>
+    <div fxLayout='row' fxLayoutGap="20px">
+      <div fxFlex="70" class="item">
+        <app-sale-line-chart></app-sale-line-chart>
+      </div>
+      <div fxFlex="30">
+        LATEST SALES
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Budget Summary">Content 2</mat-tab>
 </mat-tab-group>
