@@ -10,6 +10,7 @@ import { WidgetVisitorComponent } from './components/widget-visitor/widget-visit
 import { WidgetUserComponent } from './components/widget-user/widget-user.component';
 import { WidgetSaleComponent } from './components/widget-sale/widget-sale.component';
 import { WidgetProfitComponent } from './components/widget-profit/widget-profit.component';
+import { VisitorLineChartComponent } from './components/visitor-line-chart/visitor-line-chart.component';
 import { SaleLineChartComponent } from './components/sale-line-chart/sale-line-chart.component';
 import { SaleMapComponent } from './components/sale-map/sale-map.component';
 import { SaleOverviewComponent } from './components/sale-overview/sale-overview.component';
@@ -23,7 +24,8 @@ export const COMPONENTS = [
   WidgetVisitorComponent,
   WidgetUserComponent,
   WidgetSaleComponent,
-  WidgetProfitComponent
+  WidgetProfitComponent,
+  VisitorLineChartComponent
 ];
 
 @NgModule({

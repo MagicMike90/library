@@ -7,10 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SaleLineChartComponent implements OnInit {
   // lineChart
-  public lineChartData: Array<any> = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
+  
   public lineChartLabels: Array<any> = [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050];
   public lineChartType: string = 'line';
 
