@@ -14,7 +14,7 @@ export function reducer(state = initialState, action: dashboardAction.Actions): 
     case dashboardAction.GET_TRANSACTIONS: {
       return {
         ...state,
-        transations: action.payload.user,
+        transations: action.payload,
       };
     }
 
@@ -25,7 +25,7 @@ export function reducer(state = initialState, action: dashboardAction.Actions): 
     case dashboardAction.GET_TRANSACTIONS_FAILURE: {
       return {
         ...state,
-        transations: action.payload.user,
+        transations: action.payload,
       };
     }
     default: {
