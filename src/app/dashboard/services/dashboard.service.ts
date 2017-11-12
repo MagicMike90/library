@@ -8,13 +8,16 @@ import AuthStore from '../../auth/auth.store';
 @Injectable()
 export class DashboardService {
     private headers: HttpHeaders;
-    private api_endpoint = 'http://localhost:5000/api';  // URL to web api
+    private transaction_endpoint = 'http://localhost:5000/api/transaction';  // URL to web api
 
     constructor(private http: HttpClient) {
         this.headers = new HttpHeaders();
-        this.headers.set('Content-Type', 'application/json');
-        this.headers.set('Application-Names', ['store', 'auth']);
-        this.headers.set('Authorization', 'Bearer ' + AuthStore.getToken());
+        this.headers =  this.headers.set('Content-Type', 'application/json');
+        this.headers =  this.headers.set('Application-Names', ['store', 'dashboard']);
+        this.headers =  this.headers.set('Authorization', 'Bearer ' + AuthStore.getToken());
+        console.log('DashboardService', this.headers.keys());
     }
-    getTransactions() : any{}
+    getTransactions(): any {
+        return this.http.get(this.transaction_endpoint, { headers: this.headers });
+    }
 }

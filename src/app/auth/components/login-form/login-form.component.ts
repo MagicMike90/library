@@ -37,7 +37,7 @@ export class LoginFormComponent implements OnInit {
 
   createForm() {
     this.form = new FormGroup({
-      email:this.email,
+      email: this.email,
       password: this.password,
     });
   }
@@ -46,12 +46,12 @@ export class LoginFormComponent implements OnInit {
   }
 
   getErrorMessage(type) {
-    let errors = {};
-    errors["email"] = (this.email.hasError('required') ? 'You must enter a value' :
-    this.email.hasError('email') ? 'Not a valid email' : '');
+    const errors = {};
+    errors['email'] = (this.email.hasError('required') ? 'You must enter a value' :
+      this.email.hasError('email') ? 'Not a valid email' : '');
 
-    errors["password"] = (this.email.hasError('required') ? 'You must enter a value' :
-    this.password.hasError('minLength') ? 'Not a valid password' : '');
+    errors['password'] = (this.email.hasError('required') ? 'You must enter a value' :
+      this.password.hasError('minLength') ? 'Not a valid password' : '');
     return errors[type];
   }
 

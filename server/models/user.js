@@ -50,5 +50,5 @@ userSchema.methods.name = function () {
   return this.displayName || this.username;
 };
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;

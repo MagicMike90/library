@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import * as dashboard from '../../reducers';
+import * as Transaction from '../actions/transaction';
 
 const map_geo_json = '../../../assets/geojson/custom.geo.json';
 @Component({
@@ -20,7 +24,7 @@ export class DashboardComponent implements OnInit {
   private geojson: GeoJSON.FeatureCollection<any>;
 
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private store: Store<dashboard.State>) { }
 
   ngOnInit() {
 
@@ -33,6 +37,8 @@ export class DashboardComponent implements OnInit {
     //   // change the data periodically
     //   setInterval(() => this.generateData(), 3000);
     // }, 1000);
+
+    this.store.dispatch(new Transaction.GetTransactions());
   }
 
 

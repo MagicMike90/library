@@ -1,12 +1,12 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import * as fromRoot from '../../reducers';
-import * as transation from './transation';
+import * as Root from '../../reducers';
+import * as transation from './transaction';
 
 export interface DashboardState {
     status: transation.State;
 }
 
-export interface State extends fromRoot.State {
+export interface State extends Root.State {
     dasboard: DashboardState;
 }
 
@@ -19,9 +19,9 @@ export const selectDashboardState = createFeatureSelector<DashboardState>('dashb
 export const selectDashboardStatusState = createSelector(
     selectDashboardState,
     (state: DashboardState) => state.status
-  );
+);
 
 export const getTransactions = createSelector(
     selectDashboardStatusState,
     transation.getTransations
-  );
+);

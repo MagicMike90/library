@@ -12,8 +12,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders();
-    this.headers.set('Content-Type', 'application/json');
-    this.headers.set('Application-Names', ['store', 'auth']);
+    this.headers = this.headers.set('Content-Type', 'application/json');
+    this.headers = this.headers.set('Application-Names', ['store', 'auth']);
   }
 
   register(user: Authenticate): any {

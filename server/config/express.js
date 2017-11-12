@@ -34,8 +34,8 @@ app.use('/api', authCheckMiddleware);
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/api/users', users);
-app.use('/mock',mock);
-app.use('/api/transaction',transaction);
+app.use('/api/transaction', transaction);
+app.use('/mock', mock);
 app.get('*', (req, res) => {
   console.log('route to no where');
   res.sendFile(path.resolve('dist/index.html'));

@@ -18,7 +18,7 @@ import { SaleMapComponent } from './components/sale-map/sale-map.component';
 import { SaleOverviewComponent } from './components/sale-overview/sale-overview.component';
 
 import { DashboardService } from './services/dashboard.service';
-import { DashboardEffects } from './effects/dashboard.effects';
+import { TransactionEffects } from './effects/transaction.effects';
 import { reducers } from './reducers';
 
 export const COMPONENTS = [
@@ -41,7 +41,7 @@ export const COMPONENTS = [
     FlexLayoutModule,
 
     StoreModule.forFeature('dashboard', reducers),
-    EffectsModule.forFeature([DashboardEffects])
+    EffectsModule.forFeature([TransactionEffects])
   ],
   exports: COMPONENTS,
   declarations: COMPONENTS,

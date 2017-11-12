@@ -23,6 +23,6 @@ transactionSchema.set('toJSON', {
 	virtuals: true
 });
 
-const Transaction = mongoose.model("transations", transactionSchema);
+const Transaction = mongoose.model("Transation", transactionSchema);
 
 module.exports = Transaction;

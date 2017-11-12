@@ -1,10 +1,12 @@
-const express = require('express');
+import express from 'express';
+import transactionController from '../controllers/transactionController';
+
 const router = express.Router();
 
-const transactionController = require('../controllers/transactionController');
-
-
 /* GET userController listing. */
-router.get('/fake',transactionController.generate_fake_transiations);
+router.get('/', function (req, res, next) {
+  transactionController.transaction_list(req, res, next);
+  //res.end(userController.list);
+});
 
 module.exports = router;
