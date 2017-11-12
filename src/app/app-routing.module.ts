@@ -11,6 +11,7 @@ const RootRoutes: Routes = [
     {
         path: 'app', component: ContainersComponent, canActivate: [AuthGuard],
         children: [
+            { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent }
         ]
     },

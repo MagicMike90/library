@@ -12,7 +12,8 @@ import auth from '../routes/auth';
 import index from '../routes/index';
 import users from '../routes/users';
 import books from '../routes/books';
-
+import transaction from '../routes/transaction';
+import mock from '../routes/mock';
 
 
 const app = express();
@@ -33,6 +34,8 @@ app.use('/api', authCheckMiddleware);
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/api/users', users);
+app.use('/mock',mock);
+app.use('/api/transaction',transaction);
 app.get('*', (req, res) => {
   console.log('route to no where');
   res.sendFile(path.resolve('dist/index.html'));
