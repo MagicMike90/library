@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -15,6 +17,9 @@ import { SaleLineChartComponent } from './components/sale-line-chart/sale-line-c
 import { SaleMapComponent } from './components/sale-map/sale-map.component';
 import { SaleOverviewComponent } from './components/sale-overview/sale-overview.component';
 
+import { DashboardService } from './services/dashboard.service';
+import { DashboardEffects } from './effects/dashboard.effects';
+import { reducers } from './reducers';
 
 export const COMPONENTS = [
   DashboardComponent,
@@ -33,9 +38,13 @@ export const COMPONENTS = [
     CommonModule,
     MaterialUiModule,
     ChartsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+
+    StoreModule.forFeature('dashboard', reducers),
+    EffectsModule.forFeature([DashboardEffects])
   ],
   exports: COMPONENTS,
-  declarations: COMPONENTS
+  declarations: COMPONENTS,
+  providers: [DashboardService]
 })
 export class DashboardModule { }

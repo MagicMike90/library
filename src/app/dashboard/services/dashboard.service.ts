@@ -6,9 +6,9 @@ import { _throw } from 'rxjs/observable/throw';
 import AuthStore from '../../auth/auth.store';
 
 @Injectable()
-export class AuthService {
+export class DashboardService {
     private headers: HttpHeaders;
-    private api_endpoint = 'http://localhost:5000/auth';  // URL to web api
+    private api_endpoint = 'http://localhost:5000/api';  // URL to web api
 
     constructor(private http: HttpClient) {
         this.headers = new HttpHeaders();
@@ -16,4 +16,5 @@ export class AuthService {
         this.headers.set('Application-Names', ['store', 'auth']);
         this.headers.set('Authorization', 'Bearer ' + AuthStore.getToken());
     }
+    getTransactions() : any{}
 }
