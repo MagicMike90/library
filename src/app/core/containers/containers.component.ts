@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -21,11 +22,19 @@ export class ContainersComponent implements OnInit, OnDestroy {
   private open: boolean;
   private watcher: Subscription;
   private activeMediaQuery: string;
+  private selectedLink: string;
 
   private showSidenav: Observable<boolean>;
   private loggedIn: Observable<boolean>;
 
-  constructor(private media: ObservableMedia, private store: Store<rootReducer.State>) { }
+  constructor(private media: ObservableMedia, private store: Store<rootReducer.State>, private router: Router) {
+    // have to place in constructor, otherwise it would work
+    this.router.events
+      .filter((event) => event instanceof NavigationEnd)
+      .subscribe((event) => {
+        console.log('ContainersComponent NavigationEnd:', event);
+      });
+  }
 
   ngOnInit() {
     // windows observer event
@@ -62,7 +71,6 @@ export class ContainersComponent implements OnInit, OnDestroy {
         this.open = true;
       }
     });
-    // this.loggedIn = this.store.select(fromAuth.getLoggedIn);
   }
   ngOnDestroy() {
     this.watcher.unsubscribe();

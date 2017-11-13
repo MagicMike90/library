@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, Route } from '@angular/router';
+import { Router, Route, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
@@ -16,18 +16,18 @@ import { routerTransition } from './animations/router.animation';
 })
 export class AppComponent {
   title = 'Library';
-  options: FormGroup;
-
+  private activatedRoute: ActivatedRoute;
 
   constructor(private router: Router, fb: FormBuilder) {
-    this.options = fb.group({
-      'color': 'primary',
-      'fontSize': [16, Validators.min(10)],
-    });
+
+
+    // this.router.events
+    //   .filter((event) => event instanceof NavigationEnd)
+    //   .subscribe((event) => {
+    //     console.log('NavigationEnd:', event);
+    //   });
   }
-  getFontSize() {
-    return Math.max(10, this.options.value.fontSize);
-  }
+
   prepareRouteTransition(outlet) {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }

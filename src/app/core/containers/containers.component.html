@@ -1,5 +1,8 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="mat-typography">
   <mat-sidenav #sidenav [mode]="mode" [opened]="open">
+    <div class='sidenav-header'>
+
+    </div>
     <mat-nav-list *ngFor="let menu of menus">
       <mat-list-item routerLink={{menu.link}} [class.selected]="menu.link === selectedLink" (click)="onSelect(menu.link)">
         <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>

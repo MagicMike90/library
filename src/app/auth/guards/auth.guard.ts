@@ -12,9 +12,7 @@ import AuthStore from '../auth.store';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private store: Store<fromAuth.State>, private router: Router) {
-    console.log('AuthGuard');
-  }
+  constructor(private store: Store<fromAuth.State>, private router: Router) {}
 
   canActivate(): Observable<boolean> {
     return this.store

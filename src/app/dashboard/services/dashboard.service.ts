@@ -15,7 +15,6 @@ export class DashboardService {
         this.headers =  this.headers.set('Content-Type', 'application/json');
         this.headers =  this.headers.set('Application-Names', ['store', 'dashboard']);
         this.headers =  this.headers.set('Authorization', 'Bearer ' + AuthStore.getToken());
-        console.log('DashboardService', this.headers.keys());
     }
     getTransactions(): any {
         return this.http.get(this.transaction_endpoint, { headers: this.headers });
