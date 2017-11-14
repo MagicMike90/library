@@ -37,6 +37,8 @@ export class ContainersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.selectedLink = '/app/dashboard';
+
     // windows observer event
     this.watcher = this.media.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';

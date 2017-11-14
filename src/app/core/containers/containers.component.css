@@ -14,14 +14,48 @@
   padding: 20px;
 }
 
+h1 {
+  color: #fff;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 20px;
+  margin-left: 12px;
+  font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
 mat-sidenav {
   width: 200px;
+  background: #001529;
+  -webkit-box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
+
+.sidenav-header {
+  height: 64px;
+  position: relative;
+  line-height: 64px;
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+  background: #002140;
+  overflow: hidden;
+}
+
+.logo {
+  height: 32px;
+  border-radius: 6px;
+  margin: 16px;
 }
 
 .content {
   margin: 15px;
 }
 
-.selected {
-  color: blue;
+.mat-nav-list .mat-list-item {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.mat-nav-list .mat-list-item.selected {
+  color: #fff;
 }

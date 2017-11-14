@@ -12,10 +12,10 @@ const RootRoutes: Routes = [
         path: 'app', component: ContainersComponent, canActivate: [AuthGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent },
-            // { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
+            { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
         ]
     },
-    { path: '', redirectTo: '/app', pathMatch: 'full' },
+    { path: '', redirectTo: '/app/dashboard', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 
