@@ -22,10 +22,11 @@ h1 {
   margin-left: 12px;
   font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 600;
+  margin: 0;
 }
 
 mat-sidenav {
-  width: 200px;
+  width: 250px;
   background: #001529;
   -webkit-box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
@@ -35,6 +36,7 @@ mat-sidenav {
   height: 64px;
   position: relative;
   line-height: 64px;
+  padding-left: 24px;
   -webkit-transition: all .3s;
   -o-transition: all .3s;
   transition: all .3s;
@@ -43,9 +45,9 @@ mat-sidenav {
 }
 
 .logo {
+  display: inline-block;
+  vertical-align: middle;
   height: 32px;
-  border-radius: 6px;
-  margin: 16px;
 }
 
 .content {
