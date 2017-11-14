@@ -1,7 +1,5 @@
-<mat-card>
-  <div style="display: block">
-    <canvas baseChart [chartType]="barChartType" [legend]="showLegend" [datasets]="datasets" [labels]="chartLabels" [options]="options" [colors]="chartColors" (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)">
-    </canvas>
-  </div>
-</mat-card>
+<div style="display: block">
+  <canvas baseChart [chartType]="barChartType" [legend]="showLegend" [datasets]="datasets" [labels]="chartLabels" [options]="options"
+    [colors]="chartColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+  </canvas>
+</div>

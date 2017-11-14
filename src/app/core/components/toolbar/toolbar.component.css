@@ -5,7 +5,7 @@
 .example-spacer {
   flex: 1 1 auto;
 }
-@media (min-width: 767px) { 
+@media (min-width: 960px) { 
   .burger {
     display: none;
   }

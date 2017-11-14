@@ -1,30 +1,45 @@
-<!-- <div fxLayout='row' fxLayoutGap="20px">
-  <div fxFlex="25" class="item">
-    <app-widget-visitor></app-widget-visitor>
-  </div>
-  <div fxFlex="25" class="item">
-    <app-widget-user></app-widget-user>
-  </div>
+<div fxLayout='row' fxLayoutGap="20px">
   <div fxFlex="25" class="item">
     <app-widget-sale></app-widget-sale>
   </div>
   <div fxFlex="25" class="item">
+    <app-widget-visitor></app-widget-visitor>
+  </div>
+  <div fxFlex="25" class="item">
+    <app-widget-payments></app-widget-payments>
+  </div>
+  <div fxFlex="25" class="item">
     <app-widget-profit></app-widget-profit>
   </div>
-</div> -->
-<div fxLayout='row' fxLayoutGap="20px">
-  <div fxFlex="70" class="item">
-    <app-visitor-line-chart></app-visitor-line-chart>
-  </div>
-  <div fxFlex="30">
-    LATEST SALES
-  </div>
 </div>
-<div fxLayout='row' fxLayoutGap="20px">
-  <div fxFlex="70" class="item">
-    <app-sale-line-chart></app-sale-line-chart>
-  </div>
-  <div fxFlex="30">
-    LATEST SALES
-  </div>
-</div>
+
+<mat-card>
+  <mat-tab-group>
+    <mat-tab label="Sales">
+      <div fxLayout='row' fxLayoutGap="15px">
+        <div fxFlex="60" class="item">
+          <app-sale-line-chart></app-sale-line-chart>
+        </div>
+        <div fxFlex="20">
+          Website conversions
+        </div>
+        <div fxFlex="20">
+          Top Salers
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Vistors">
+      <div fxLayout='row' fxLayoutGap="15px">
+        <div fxFlex="60" class="item">
+          <app-visitor-line-chart></app-visitor-line-chart>
+        </div>
+        <div fxFlex="20">
+          Traffic Source
+        </div>
+        <div fxFlex="20">
+          Top Referals
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

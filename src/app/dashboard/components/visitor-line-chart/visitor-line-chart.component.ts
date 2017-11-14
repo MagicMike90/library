@@ -9,7 +9,8 @@ export class VisitorLineChartComponent implements OnInit {
 
   // lineChart
   // public lineChartLabels: Array<any> = [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050];
-  public chartLabels: Array<any> = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+  public chartLabels: Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   public chartType = 'bar';
 
   public barChartType = 'bar';
@@ -21,7 +22,7 @@ export class VisitorLineChartComponent implements OnInit {
     borderWidth: 1
   }];
 
-  public chartColors:Array<any> = [{ backgroundColor: 'rgba(54, 162, 235, 1)'}];
+  public chartColors: Array<any> = [{ backgroundColor: 'rgba(54, 162, 235, 1)' }];
 
   private options: {
     scaleShowVerticalLines: false,

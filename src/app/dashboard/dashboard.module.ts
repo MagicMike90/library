@@ -11,6 +11,7 @@ import { DashboardComponent } from './containers/dashboard.component';
 import { WidgetVisitorComponent } from './components/widget-visitor/widget-visitor.component';
 import { WidgetUserComponent } from './components/widget-user/widget-user.component';
 import { WidgetSaleComponent } from './components/widget-sale/widget-sale.component';
+import { WidgetPaymentsComponent } from './components/widget-payments/widget-payments.component';
 import { WidgetProfitComponent } from './components/widget-profit/widget-profit.component';
 import { VisitorLineChartComponent } from './components/visitor-line-chart/visitor-line-chart.component';
 import { SaleLineChartComponent } from './components/sale-line-chart/sale-line-chart.component';
@@ -28,6 +29,7 @@ export const COMPONENTS = [
   SaleLineChartComponent,
   WidgetVisitorComponent,
   WidgetUserComponent,
+  WidgetPaymentsComponent,
   WidgetSaleComponent,
   WidgetProfitComponent,
   VisitorLineChartComponent

@@ -73,6 +73,3 @@ span {
 .mat-button.mat-primary .mat-button-focus-overlay {
   background-color: inherit !important;
 }
-.mat-card-title {
-  font-size: 16px !important;
-}
