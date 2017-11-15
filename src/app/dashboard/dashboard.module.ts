@@ -19,6 +19,10 @@ import { SaleLineChartComponent } from './components/sale-line-chart/sale-line-c
 import { SaleMapComponent } from './components/sale-map/sale-map.component';
 import { SaleOverviewComponent } from './components/sale-overview/sale-overview.component';
 import { WidgetToolbarComponent } from './components/widget-toolbar/widget-toolbar.component';
+import { WidgetWebsiteConversionsComponent } from './components/widget-website-conversions/widget-website-conversions.component';
+import { WidgetTopSalersComponent } from './components/widget-top-salers/widget-top-salers.component';
+import { WidgetTrafficSourceComponent } from './components/widget-traffic-source/widget-traffic-source.component';
+import { WidgetTopReferralsComponent } from './components/widget-top-referrals/widget-top-referrals.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { TransactionEffects } from './effects/transaction.effects';
@@ -35,7 +39,11 @@ export const COMPONENTS = [
   WidgetSaleComponent,
   WidgetProfitComponent,
   VisitorLineChartComponent,
-  WidgetToolbarComponent
+  WidgetToolbarComponent,
+  WidgetWebsiteConversionsComponent,
+  WidgetTopSalersComponent,
+  WidgetTrafficSourceComponent,
+  WidgetTopReferralsComponent,
 ];
 
 @NgModule({
