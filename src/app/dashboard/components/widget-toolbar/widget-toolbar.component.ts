@@ -8,14 +8,15 @@ import { FormControl } from '@angular/forms';
 })
 export class WidgetToolbarComponent implements OnInit {
   favoriteSeason: string;
+  selectedPeriod: string;
   selectedStartDate = new FormControl(new Date());
   selectedEndDate = new FormControl(new Date());
 
-  seasons = [
-    'Today',
-    'This Week',
-    'This Month',
-    'This Year',
+  periods = [
+    { value: 'daily', viewValue: 'Today' },
+    { value: 'weekly', viewValue: 'This Week' },
+    { value: 'monthly', viewValue: 'This Month' },
+    { value: 'yearly', viewValue: 'This Year' }
   ];
 
 

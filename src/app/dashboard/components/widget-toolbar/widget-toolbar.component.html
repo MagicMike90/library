@@ -2,11 +2,18 @@
 
   <div fxLayout='row' fxLayoutGap="15px">
     <div fxFlex="60" class="item">
-      <mat-radio-group class="radio-group" [(ngModel)]="radioPeriod">
+      <!-- <mat-radio-group class="radio-group" [(ngModel)]="radioPeriod">
         <mat-radio-button class="radio-button" *ngFor="let season of seasons" [value]="season">
           {{season}}
         </mat-radio-button>
-      </mat-radio-group>
+      </mat-radio-group> -->
+      <mat-form-field>
+        <mat-select [(value)]="selectedPeriod" placeholder="selected period">
+          <mat-option *ngFor="let period of periods" [value]="period.value">
+            {{ period.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div fxFlex="20" class="item">
       <mat-form-field>
