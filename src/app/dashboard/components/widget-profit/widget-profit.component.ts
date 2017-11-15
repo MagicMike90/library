@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetProfitComponent implements OnInit {
 
+  private conversion = 70;
   constructor() { }
 
   ngOnInit() {

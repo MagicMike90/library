@@ -12,17 +12,45 @@ export class SaleLineChartComponent implements OnInit {
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   public lineChartType = 'line';
   private showLegend = false;
-  
+
   private datasets = [{
     data: [86, 114, 106, 106, 107, 111, 133, 221, 783, 2478],
-    label: 'Africa',
-    borderColor: '#3e95cd',
+    label: 'Sale'
   }];
 
+  public chartColors: Array<any> = [{ backgroundColor: 'rgba(54, 162, 235, 1)' }];
+
   private options: {
+    responsive: true,
     title: {
       display: true,
-      text: 'World population per region (in millions)'
+      text: 'Chart.js Line Chart'
+    },
+    tooltips: {
+      mode: 'label',
+    },
+    hover: {
+      mode: 'label'
+    },
+    scales: {
+      xAxes: [{
+        display: true,
+        scaleLabel: {
+          show: true,
+          labelString: 'Month'
+        }
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          show: true,
+          labelString: 'Value'
+        },
+        ticks: {
+          suggestedMin: -10,
+          suggestedMax: 250,
+        }
+      }]
     }
   };
 
