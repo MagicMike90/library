@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import {
   MatCardModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
   MatIconModule, MatSelectModule, MatRadioModule, MatToolbarModule, MatSidenavModule,
-  MatListModule, MatTooltipModule, MatMenuModule, MatTabsModule
+  MatListModule, MatTooltipModule, MatMenuModule, MatTabsModule, MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 export const MODULES = [
@@ -22,7 +23,9 @@ export const MODULES = [
   MatListModule,
   MatTooltipModule,
   MatMenuModule,
-  MatTabsModule
+  MatTabsModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 @NgModule({
   imports: MODULES,

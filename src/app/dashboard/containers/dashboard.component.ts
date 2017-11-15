@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { Store } from '@ngrx/store';
+import { FormControl } from '@angular/forms';
+import { trigger, style, animate, transition } from '@angular/animations';
 import { Observable } from 'rxjs/Observable';
 import * as dashboard from '../../reducers';
 import * as Transaction from '../actions/transaction';
@@ -10,7 +12,21 @@ const map_geo_json = '../../../assets/geojson/custom.geo.json';
   moduleId: module.id,
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({ transform: 'translateX(100%)', opacity: 0 }),
+          animate('300ms', style({ transform: 'translateX(0)', opacity: 1 }))
+        ]),
+        transition(':leave', [
+          style({ transform: 'translateX(0)', opacity: 1 }),
+          animate('300ms', style({ transform: 'translateX(100%)', opacity: 0 }))
+        ])
+      ]
+    )
+  ]
 })
 export class DashboardComponent implements OnInit {
 
@@ -22,12 +38,22 @@ export class DashboardComponent implements OnInit {
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
   private geojson: GeoJSON.FeatureCollection<any>;
-
+  private selected: string;
+  favoriteSeason: string;
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
+  seasons = [
+    'Winter',
+    'Spring',
+    'Summer',
+    'Autumn',
+  ];
+  startDate = new Date(1990, 0, 1);
 
   constructor(private http: Http, private store: Store<dashboard.State>) { }
 
   ngOnInit() {
-
+    this.selected = 'sales';
     this.http.get(map_geo_json)
       .subscribe(res => this.geojson = res.json());
     // // give everything a chance to get loaded before starting the animation to reduce choppiness
@@ -40,7 +66,15 @@ export class DashboardComponent implements OnInit {
 
     this.store.dispatch(new Transaction.GetTransactions());
   }
-
+  showSales() {
+    return this.selected === 'sales';
+  }
+  showVisitors() {
+    return this.selected === 'visitors';
+  }
+  onSelected(menu) {
+    this.selected = menu;
+  }
 
   // generateData() {
   //   this.chartData = [];

@@ -14,9 +14,41 @@
 </div>
 
 <mat-card>
+  <!-- <mat-toolbar>
+    <button (click)="onSelected('sales')" mat-button>Sales</button>
+    <button (click)="onSelected('visitors')" mat-button>Visitors</button>
+  </mat-toolbar>
+
+  <div *ngIf="showSales(); else elseBlock" [@enterAnimation]>
+    <div fxLayout='row' fxLayoutGap="15px">
+      <div fxFlex="60" class="item">
+        <app-sale-line-chart></app-sale-line-chart>
+      </div>
+      <div fxFlex="20">
+        Website conversions
+      </div>
+      <div fxFlex="20">
+        Top Salers
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showVisitors()" [@enterAnimation]>
+    <div fxLayout='row' fxLayoutGap="15px">
+      <div fxFlex="60" class="item">
+        <app-sale-line-chart></app-sale-line-chart>
+      </div>
+      <div fxFlex="20">
+        Website conversions
+      </div>
+      <div fxFlex="20">
+        Top Salers
+      </div>
+    </div>
+  </div> -->
+  <app-widget-toolbar></app-widget-toolbar>
   <mat-tab-group>
     <mat-tab label="Sales">
-      <div fxLayout='row' fxLayoutGap="15px">
+      <div fxLayout='row' fxLayoutGap="15px" class="tab-content">
         <div fxFlex="60" class="item">
           <app-sale-line-chart></app-sale-line-chart>
         </div>
@@ -29,7 +61,7 @@
       </div>
     </mat-tab>
     <mat-tab label="Vistors">
-      <div fxLayout='row' fxLayoutGap="15px">
+      <div fxLayout='row' fxLayoutGap="15px" class="tab-content">
         <div fxFlex="60" class="item">
           <app-visitor-line-chart></app-visitor-line-chart>
         </div>

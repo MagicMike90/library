@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -17,6 +18,7 @@ import { VisitorLineChartComponent } from './components/visitor-line-chart/visit
 import { SaleLineChartComponent } from './components/sale-line-chart/sale-line-chart.component';
 import { SaleMapComponent } from './components/sale-map/sale-map.component';
 import { SaleOverviewComponent } from './components/sale-overview/sale-overview.component';
+import { WidgetToolbarComponent } from './components/widget-toolbar/widget-toolbar.component';
 
 import { DashboardService } from './services/dashboard.service';
 import { TransactionEffects } from './effects/transaction.effects';
@@ -32,12 +34,15 @@ export const COMPONENTS = [
   WidgetPaymentsComponent,
   WidgetSaleComponent,
   WidgetProfitComponent,
-  VisitorLineChartComponent
+  VisitorLineChartComponent,
+  WidgetToolbarComponent
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialUiModule,
     ChartsModule,
     FlexLayoutModule,
