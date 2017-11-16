@@ -14,17 +14,22 @@ exports.transaction_list = (req, res) => {
       "_id": {
         $month: "$date"
       },
-      "totalValues": {
+      "total": {
         "$sum": "$amount"
       },
       "count": {
         "$sum": 1
       }
     }
-  }], function (err, results) {
-    console.log('aggregate', results);
+  }]).then(transactions => {
+    res.json({
+      transactions
+    });
+  }).catch(err => {
+    res.status(500).json({
+      message: `Internal Server Error: ${err}`
+    });
   });
-
   // Transaction.aggregate(
   //   [
   //     // Grouping pipeline
@@ -55,15 +60,15 @@ exports.transaction_list = (req, res) => {
   //   console.log('distinct', err);
   // })
 
-  Transaction.find().then(transations => {
-    res.json({
-      transations
-    });
-  }).catch(err => {
-    res.status(500).json({
-      message: `Internal Server Error: ${err}`
-    });
-  });
+  // Transaction.find().then(transations => {
+  //   res.json({
+  //     transations
+  //   });
+  // }).catch(err => {
+  //   res.status(500).json({
+  //     message: `Internal Server Error: ${err}`
+  //   });
+  // });
 };
 
 exports.generate_fake_transiations = function (req, res) {

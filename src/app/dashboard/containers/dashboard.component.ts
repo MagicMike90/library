@@ -41,9 +41,8 @@ export class DashboardComponent implements OnInit {
     this.transaction = this.store.select(dashboard.getTransactions);
     this.transaction.subscribe(transactions => {
       console.log('transactions', transactions);
-      // this.transactionSummary = transactions;
-    }
-    );
+      this.transactionSummary = transactions;
+    });
   }
 
   ngOnInit() {

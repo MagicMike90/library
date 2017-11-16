@@ -1,6 +1,6 @@
 <div style="display: block">
   <h4>Sales</h4>
-  <canvas baseChart [data]="data" [labels]="lineChartLabels" [colors]="chartColors"  [legend]="showLegend" [options]="options" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
+  <canvas baseChart [datasets]="datasets" [labels]="lineChartLabels" [colors]="chartColors"  [legend]="showLegend" [options]="options" [chartType]="lineChartType" (chartHover)="chartHovered($event)"
     (chartClick)="chartClicked($event)">
   </canvas>
 </div>

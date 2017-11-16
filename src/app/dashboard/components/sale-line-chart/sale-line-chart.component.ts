@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-sale-line-chart',
   templateUrl: './sale-line-chart.component.html',
   styleUrls: ['./sale-line-chart.component.css']
 })
-export class SaleLineChartComponent implements OnInit {
+export class SaleLineChartComponent implements OnInit, OnChanges {
 
   @Input() private data: Array<any>;
 
@@ -59,6 +59,9 @@ export class SaleLineChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+  ngOnChanges() {
+    console.log('change', this.data);
   }
   public randomizeType(): void {
     this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';

@@ -22,7 +22,7 @@ export class TransactionEffects {
       this.dashboardService
         .getTransactions()
         .map(payload => {
-          return new Transaction.GetTransactionsSuccess(payload);
+          return new Transaction.GetTransactionsSuccess(payload.transactions);
         })
         .catch(error => of(new Transaction.GetTransactionsFailure(error)))
     );
