@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-widget-toolbar',
@@ -18,11 +19,13 @@ export class WidgetToolbarComponent implements OnInit {
     { value: 'monthly', viewValue: 'This Month' },
     { value: 'yearly', viewValue: 'This Year' }
   ];
-
+  events: string[] = [];
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.events.push(`${type}: ${event.value}`);
+  }
 }

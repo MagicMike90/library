@@ -4,13 +4,20 @@ import faker from 'faker';
 
 
 exports.transaction_report = (req, res) => {
-  Transaction.aggregate([{
+  const { starDate, endDate}  = req.body;
+
+  Transaction.aggregate([
+
+    {
       $match: {
-        type: "payment"
+        type: "payment",
+        date: {
+          "$gte": new Date("2017-01-01"), "$lt": new Date("2017-12-31")
+        }
       }
     },
     {
-      "$group": {
+      $group: {
         "_id": {
           $month: "$date"
         },
@@ -27,8 +34,7 @@ exports.transaction_report = (req, res) => {
         _id: 1
       }
     }
-  ]).then(transactions => {
-    console.log('transactions',transactions);
+  ]).allowDiskUse(true).exec().then(transactions => {
     res.json({
       transactions
     });

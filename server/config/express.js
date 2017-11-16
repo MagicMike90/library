@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(passport.initialize());
 
 // pass the authorization checker middleware
-app.use('/api', authCheckMiddleware);
+// app.use('/api', authCheckMiddleware);
 
 // add routes
 app.use('/', index);
