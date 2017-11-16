@@ -61,7 +61,12 @@ export class SaleLineChartComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges() {
-    console.log('change', this.data);
+    console.log('ngOnChanges');
+    if (this.data) {
+      for (let i = 0; i < this.data.length; i++) {
+        this.datasets[0].data[i] = this.data[i].total;
+      }
+    }
   }
   public randomizeType(): void {
     this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';

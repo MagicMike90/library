@@ -6,22 +6,29 @@ import faker from 'faker';
 exports.transaction_list = (req, res) => {
 
   Transaction.aggregate([{
-    $match: {
-      type: "payment"
-    }
-  }, {
-    "$group": {
-      "_id": {
-        $month: "$date"
-      },
-      "total": {
-        "$sum": "$amount"
-      },
-      "count": {
-        "$sum": 1
+      $match: {
+        type: "payment"
+      }
+    },
+    {
+      "$group": {
+        "_id": {
+          $month: "$date"
+        },
+        "total": {
+          "$sum": "$amount"
+        },
+        "count": {
+          "$sum": 1
+        }
+      }
+    },
+    {
+      $sort: {
+        _id: 1
       }
     }
-  }]).then(transactions => {
+  ]).then(transactions => {
     res.json({
       transactions
     });
