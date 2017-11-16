@@ -8,7 +8,7 @@ import AuthStore from '../../auth/auth.store';
 @Injectable()
 export class DashboardService {
     private headers: HttpHeaders;
-    private transaction_endpoint = 'http://localhost:5000/api/transaction';  // URL to web api
+    private transaction_endpoint = 'http://localhost:5000/api/transaction/report';  // URL to web api
 
     constructor(private http: HttpClient) {
         this.headers = new HttpHeaders();

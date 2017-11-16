@@ -3,8 +3,7 @@ import Transaction from "../models/transaction";
 import faker from 'faker';
 
 
-exports.transaction_list = (req, res) => {
-
+exports.transaction_report = (req, res) => {
   Transaction.aggregate([{
       $match: {
         type: "payment"
@@ -29,6 +28,7 @@ exports.transaction_list = (req, res) => {
       }
     }
   ]).then(transactions => {
+    console.log('transactions',transactions);
     res.json({
       transactions
     });
@@ -37,6 +37,16 @@ exports.transaction_list = (req, res) => {
       message: `Internal Server Error: ${err}`
     });
   });
+
+  Transaction.distinct("date").then(result => {
+    console.log('distinct', result);
+  }).catch(err => {
+    console.log('distinct', err);
+  })
+}
+exports.transaction_list = (req, res) => {
+
+
   // Transaction.aggregate(
   //   [
   //     // Grouping pipeline
@@ -61,21 +71,17 @@ exports.transaction_list = (req, res) => {
   //   }
   // );
 
-  // Transaction.distinct("date").then(result => {
-  //   console.log('distinct', result);
-  // }).catch(err => {
-  //   console.log('distinct', err);
-  // })
 
-  // Transaction.find().then(transations => {
-  //   res.json({
-  //     transations
-  //   });
-  // }).catch(err => {
-  //   res.status(500).json({
-  //     message: `Internal Server Error: ${err}`
-  //   });
-  // });
+
+  Transaction.find().then(transations => {
+    res.json({
+      transations
+    });
+  }).catch(err => {
+    res.status(500).json({
+      message: `Internal Server Error: ${err}`
+    });
+  });
 };
 
 exports.generate_fake_transiations = function (req, res) {

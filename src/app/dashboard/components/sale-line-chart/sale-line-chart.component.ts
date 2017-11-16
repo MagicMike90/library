@@ -19,7 +19,7 @@ export class SaleLineChartComponent implements OnInit, OnChanges {
     label: 'Sale'
   }];
 
-  public chartColors: Array<any> = [{ backgroundColor: 'rgba(54, 162, 235, 1)' }];
+  public chartColors: Array<any> = [{ backgroundColor: 'rgba(54, 162, 235, 0.7)' }];
 
   private options: {
     responsive: true,
@@ -61,12 +61,13 @@ export class SaleLineChartComponent implements OnInit, OnChanges {
   ngOnInit() {
   }
   ngOnChanges() {
-    console.log('ngOnChanges');
+
     if (this.data) {
       for (let i = 0; i < this.data.length; i++) {
         this.datasets[0].data[i] = this.data[i].total;
       }
     }
+    console.log('ngOnChanges', this.datasets);
   }
   public randomizeType(): void {
     this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
