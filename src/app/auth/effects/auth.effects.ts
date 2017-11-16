@@ -25,7 +25,7 @@ export class AuthEffects {
         .login(auth)
         .map(user => {
           AuthStore.authenticateUser(user.token);
-          return new Auth.LoginSuccess({ user })
+          return new Auth.LoginSuccess({ user });
         })
         .catch(error => of(new Auth.LoginFailure(error)))
     );

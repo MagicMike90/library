@@ -1,4 +1,4 @@
-import * as dashboardAction from '../actions/dashboard';
+import * as transactionAction from '../actions/transaction';
 import { Transaction } from '../models/transaction';
 
 export interface State {
@@ -6,23 +6,23 @@ export interface State {
 }
 
 export const initialState: State = {
-    transations: [],
+  transations: [],
 };
 
-export function reducer(state = initialState, action: dashboardAction.Actions): State {
+export function reducer(state = initialState, action: transactionAction.Actions): State {
   switch (action.type) {
-    case dashboardAction.GET_TRANSACTIONS: {
+    case transactionAction.GET_TRANSACTIONS: {
+      return initialState;
+    }
+
+    case transactionAction.GET_TRANSACTIONS_SUCCESS: {
       return {
         ...state,
         transations: action.payload,
       };
     }
 
-    case dashboardAction.GET_TRANSACTIONS_SUCCESS: {
-      return initialState;
-    }
-
-    case dashboardAction.GET_TRANSACTIONS_FAILURE: {
+    case transactionAction.GET_TRANSACTIONS_FAILURE: {
       return {
         ...state,
         transations: action.payload,

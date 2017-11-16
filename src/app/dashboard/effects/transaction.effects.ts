@@ -22,7 +22,6 @@ export class TransactionEffects {
       this.dashboardService
         .getTransactions()
         .map(payload => {
-          console.log('payload', payload);
           return new Transaction.GetTransactionsSuccess(payload);
         })
         .catch(error => of(new Transaction.GetTransactionsFailure(error)))
@@ -31,7 +30,7 @@ export class TransactionEffects {
   @Effect({ dispatch: false })
   getTransationsSuccess = this.actions
     .ofType(Transaction.GET_TRANSACTIONS_SUCCESS)
-    .do(() => console.log('GET_TRANSACTIONS_SUCCESS'));
+    .do((payload) => payload);
 
   @Effect({ dispatch: false })
   getTransationsFailure = this.actions

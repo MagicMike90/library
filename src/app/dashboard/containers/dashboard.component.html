@@ -19,7 +19,7 @@
     <mat-tab label="Sales">
       <div fxLayout='row' fxLayoutGap="15px" class="tab-content">
         <div fxFlex="60" class="item">
-          <app-sale-line-chart></app-sale-line-chart>
+          <app-sale-line-chart [data]="transactionSummary"></app-sale-line-chart>
         </div>
         <div fxFlex="20">
           <app-widget-website-conversions></app-widget-website-conversions>

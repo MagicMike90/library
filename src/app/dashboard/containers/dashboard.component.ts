@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { FormControl } from '@angular/forms';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { Observable } from 'rxjs/Observable';
-import * as dashboard from '../../reducers';
+import * as dashboard from '../reducers';
 import * as Transaction from '../actions/transaction';
 
 const map_geo_json = '../../../assets/geojson/custom.geo.json';
@@ -29,28 +29,22 @@ const map_geo_json = '../../../assets/geojson/custom.geo.json';
   ]
 })
 export class DashboardComponent implements OnInit {
+  transaction: Observable<any>;
+  transactionSummary: Array<any>;
 
-  images = ['../../../assets/svg/hangouts.svg'];
-  tiles = [
-    { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
-    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
-  ];
   private geojson: GeoJSON.FeatureCollection<any>;
   private selected: string;
-  favoriteSeason: string;
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
-  seasons = [
-    'Winter',
-    'Spring',
-    'Summer',
-    'Autumn',
-  ];
-  startDate = new Date(1990, 0, 1);
 
-  constructor(private http: Http, private store: Store<dashboard.State>) { }
+  date = new FormControl(new Date());
+
+  constructor(private http: Http, private store: Store<dashboard.State>) {
+    this.transaction = this.store.select(dashboard.getTransactions);
+    this.transaction.subscribe(transactions => {
+      console.log('transactions', transactions);
+      // this.transactionSummary = transactions;
+    }
+    );
+  }
 
   ngOnInit() {
     this.selected = 'sales';

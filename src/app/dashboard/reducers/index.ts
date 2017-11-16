@@ -3,7 +3,7 @@ import * as Root from '../../reducers';
 import * as transation from './transaction';
 
 export interface DashboardState {
-    status: transation.State;
+    transations: transation.State;
 }
 
 export interface State extends Root.State {
@@ -11,14 +11,14 @@ export interface State extends Root.State {
 }
 
 export const reducers = {
-    status: transation.reducer,
+    transations: transation.reducer,
 };
 
 export const selectDashboardState = createFeatureSelector<DashboardState>('dashboard');
 
 export const selectDashboardStatusState = createSelector(
     selectDashboardState,
-    (state: DashboardState) => state.status
+    (state: DashboardState) => state.transations
 );
 
 export const getTransactions = createSelector(
