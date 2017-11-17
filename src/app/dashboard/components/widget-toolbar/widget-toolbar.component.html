@@ -1,33 +1,29 @@
 <div>
-
-  <div fxLayout='row' fxLayoutGap="15px">
-    <div fxFlex="33" class="item">
-      <!-- <mat-radio-group class="radio-group" [(ngModel)]="radioPeriod">
-        <mat-radio-button class="radio-button" *ngFor="let season of seasons" [value]="season">
-          {{season}}
-        </mat-radio-button>
-      </mat-radio-group> -->
-      <mat-form-field>
-        <mat-select [(value)]="selectedPeriod" placeholder="Selected period">
-          <mat-option *ngFor="let period of periods" [value]="period.value">
-            {{ period.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" novalidate>
+    <div fxLayout='row' fxLayoutGap="15px">
+      <div fxFlex="33" class="item">
+        <mat-form-field>
+          <mat-select placeholder="Selected period"  formControlName="selectedPeriod">
+            <mat-option *ngFor="let period of periods" [value]="period.value">
+              {{ period.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33" class="item">
+        <mat-form-field>
+          <input matInput [matDatepicker]="startDate" placeholder="Start date" (dateChange)="addStartEvent('change', $event)" formControlName="selectedStartDate">
+          <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33" class="item">
+        <mat-form-field>
+          <input matInput [min]="this.formValues.startDate" [matDatepicker]="endDate" placeholder="End date" (dateChange)="addEndEvent('change', $event)" formControlName="selectedEndDate">
+          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
-    <div fxFlex="33" class="item">
-      <mat-form-field>
-        <input matInput [matDatepicker]="startDate" placeholder="Start date" [formControl]="selectedStartDate">
-        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
-        <mat-datepicker #startDate></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div fxFlex="33" class="item">
-      <mat-form-field>
-        <input matInput [matDatepicker]="endDate" placeholder="End date" [formControl]="selectedEndDate">
-        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
-        <mat-datepicker #endDate></mat-datepicker>
-      </mat-form-field>
-    </div>
-  </div>
+  </form>
 </div>

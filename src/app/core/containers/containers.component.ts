@@ -32,7 +32,7 @@ export class ContainersComponent implements OnInit, OnDestroy {
     this.router.events
       .filter((event) => event instanceof NavigationEnd)
       .subscribe((event) => {
-        console.log('ContainersComponent NavigationEnd:', event);
+        // console.log('ContainersComponent NavigationEnd:', event);
       });
   }
 
