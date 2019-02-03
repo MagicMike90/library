@@ -1,4 +1,4 @@
-# Hero association
+# Angular 4 Dashboard
 An app to demostrate angular 4,
 
 # Feature module used
