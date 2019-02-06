@@ -1,12 +1,12 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { NavigationEnd, Router } from '@angular/router';
-import { rxjs } from 'rxjs/rxjs';
+import { Subscription } from 'rxjs';
 
 class Menu {
-  label: String;
-  icon: String;
-  link: String;
+  label: string;
+  icon: string;
+  link: string;
 }
 const PRINT_MOBILE = 'print and (max-width: 600px)';
 
@@ -15,23 +15,22 @@ const PRINT_MOBILE = 'print and (max-width: 600px)';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-
-
 export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
-  watcher: rxjs;
+  watcher: Subscription;
   activeMediaQuery: string;
-  mode: String;
-  open: Boolean;
+  mode: string;
+  open: boolean;
 
   menus: Menu[];
-  selectedLink: String;
+  selectedLink: string;
 
   @Input() id: string;
 
   constructor(private router: Router, public media: ObservableMedia) {
-
-    this.watcher = media.subscribe((change: MediaChange) => {
-      this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
+    this.watcher = media.asObservable().subscribe((change: MediaChange) => {
+      this.activeMediaQuery = change
+        ? `'${change.mqAlias}' = (${change.mediaQuery})`
+        : '';
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.mode = 'over';
         this.open = false;
@@ -39,17 +38,15 @@ export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
         this.mode = 'side';
         this.open = true;
       }
-
     });
   }
-  ngOnChanges() {
-  }
+  ngOnChanges() {}
   ngOnDestroy() {
     this.watcher.unsubscribe();
   }
   ngOnInit() {
-    const is_mobile = this.media.isActive('xs') || this.media.isActive('sm');
-    if (is_mobile && !this.media.isActive(PRINT_MOBILE)) {
+    const isMobile = this.media.isActive('xs') || this.media.isActive('sm');
+    if (isMobile && !this.media.isActive(PRINT_MOBILE)) {
       this.mode = 'push';
       this.open = false;
     } else {
@@ -62,19 +59,18 @@ export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
       { label: 'Customers', icon: 'people', link: '/customers' },
       { label: 'Segments', icon: 'label', link: '/segments' },
       { label: 'Orders', icon: 'receipt', link: '/orders' },
-      { label: 'Categories', icon: 'bookmark', link: '/categories' },
+      { label: 'Categories', icon: 'bookmark', link: '/categories' }
     ];
 
-    this.router.events.subscribe((val) => {
+    this.router.events.subscribe(val => {
       // see also
       if (val instanceof NavigationEnd) {
         this.selectedLink = window.location.pathname;
       }
       // console.log(val instanceof NavigationEnd)
     });
-
   }
-  onSelect(link: String): void {
+  onSelect(link: string): void {
     this.selectedLink = link;
   }
 }

@@ -1,51 +1,56 @@
 import mongoose from "mongoose";
 var Schema = mongoose.Schema;
 
-var employeeSchema = new Schema({
-  id: Number,
-  name: {
-    type: Object,
-    required: true,
-    text: true
+var employeeSchema = new Schema(
+  {
+    id: Number,
+    name: {
+      type: Object,
+      required: true,
+      text: true
+    },
+    gender: string,
+    age: Number,
+    managerId: Number,
+    reports: Number,
+    managerName: string,
+    title: string,
+    department: string,
+    email: string,
+    phone: string,
+    address: string,
+    zipcode: string,
+    salary: Number,
+    isCurrent: boolean,
+    startDate: Date,
+    leaveData: Date,
+    nationality: string
   },
-  gender: String,
-  age: Number,
-  managerId: Number,
-  reports: Number,
-  managerName: String,
-  title: String,
-  department: String,
-  email: String,
-  phone: String,
-  address: String,
-  zipcode: String,
-  salary: Number,
-  isCurrent: Boolean,
-  startDate: Date,
-  leaveData: Date,
-  nationality: String
-}, {
-  timestamps: true
-});
+  {
+    timestamps: true
+  }
+);
 
-
-employeeSchema.virtual('fullName').get(function () {
-  return this.name.first + ' ' + this.name.last;
-}).set(function (v) {
-  this.name.first = v.substr(0, v.indexOf(' '));
-  this.name.last = v.substr(v.indexOf(' ') + 1);
-});;
-employeeSchema.pre('save', function (next) {
+employeeSchema
+  .virtual("fullName")
+  .get(function() {
+    return this.name.first + " " + this.name.last;
+  })
+  .set(function(v) {
+    this.name.first = v.substr(0, v.indexOf(" "));
+    this.name.last = v.substr(v.indexOf(" ") + 1);
+  });
+employeeSchema.pre("save", function(next) {
   this.updatedAt = Date.now();
   next();
 });
 employeeSchema.index({
-  name: 'text'
+  name: "text"
 });
 // Configure the 'employeeSchema' to use getters and virtuals when transforming to JSON
-employeeSchema.set('toJSON', {
-	getters: true,
-	virtuals: true
+employeeSchema.set("toJSON", {
+  getters: true,
+  virtuals: true
 });
 
 const Employee = mongoose.model("employees", employeeSchema);

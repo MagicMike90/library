@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import 'rxjs/add/operator/let';
-import { rxjs } from 'rxjs/rxjs';
 import * as rootReducer from '../../reducers';
 import * as layout from '../actions/layout';
 
@@ -18,7 +17,7 @@ export class ContainersComponent implements OnInit, OnDestroy {
   private menus: any;
   private mode: string;
   private open: boolean;
-  private watcher: rxjs;
+  private watcher: Subscription;
   private activeMediaQuery: string;
   private selectedLink: string;
 

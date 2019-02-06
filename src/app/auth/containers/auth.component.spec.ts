@@ -1,33 +1,33 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { MdInputModule, MdCardModule } from '@angular/material';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule, MatInputModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule, Store, combineReducers } from '@ngrx/store';
-import { LoginPageComponent } from './login-page.component';
-import { LoginFormComponent } from '../components/login-form.component';
+import { combineReducers, Store, StoreModule } from '@ngrx/store';
 import * as Auth from '../actions/auth';
+import { LoginFormComponent } from '../components/login-form/login-form.component';
 import * as fromAuth from '../reducers';
+import { AuthComponent } from './auth.component';
 
 describe('Login Page', () => {
-  let fixture: ComponentFixture<LoginPageComponent>;
+  let fixture: ComponentFixture<AuthComponent>;
   let store: Store<fromAuth.State>;
-  let instance: LoginPageComponent;
+  let instance: AuthComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         StoreModule.forRoot({
-          auth: combineReducers(fromAuth.reducers),
+          auth: combineReducers(fromAuth.reducers)
         }),
-        MdInputModule,
-        MdCardModule,
-        ReactiveFormsModule,
+        MatInputModule,
+        MatCardModule,
+        ReactiveFormsModule
       ],
-      declarations: [LoginPageComponent, LoginFormComponent],
+      declarations: [AuthComponent, LoginFormComponent]
     });
 
-    fixture = TestBed.createComponent(LoginPageComponent);
+    fixture = TestBed.createComponent(AuthComponent);
     instance = fixture.componentInstance;
     store = TestBed.get(Store);
 

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/exhaustMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
+import { exhaustMap, map, tap } from 'rxjs/operators';
 import * as Auth from '../actions/auth';
 import * as Registration from '../actions/registration';
 import AuthStore from '../auth.store';
@@ -15,10 +16,10 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class AuthEffects {
   @Effect()
-  login = this.actions
-    .ofType(Auth.LOGIN)
-    .map((action: Auth.Login) => action.payload)
-    .exhaustMap(auth =>
+  login = this.actions.pipe(
+    ofType(Auth.LOGIN),
+    map((action: Auth.Login) => action.payload),
+    exhaustMap(auth =>
       this.authService
         .login(auth)
         .map(user => {
@@ -26,25 +27,28 @@ export class AuthEffects {
           return new Auth.LoginSuccess({ user });
         })
         .catch(error => of(new Auth.LoginFailure(error)))
-    );
+    )
+  );
 
   @Effect({ dispatch: false })
-  loginSuccess = this.actions
-    .ofType(Auth.LOGIN_SUCCESS)
-    .do(() => this.router.navigate(['/app/dashboard']));
+  loginSuccess = this.actions.pipe(
+    ofType(Auth.LOGIN_SUCCESS),
+    tap(() => this.router.navigate(['/app/dashboard']))
+  );
 
   @Effect({ dispatch: false })
-  loginRedirect = this.actions
-    .ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT)
-    .do(authed => {
+  loginRedirect = this.actions.pipe(
+    ofType(Auth.LOGIN_REDIRECT, Auth.LOGOUT),
+    tap(authed => {
       this.router.navigate(['/auth/login']);
-    });
+    })
+  );
 
   @Effect()
-  register = this.actions
-    .ofType(Registration.REGISTER)
-    .map((action: Registration.Signup) => action.payload)
-    .exhaustMap(auth =>
+  register = this.actions.pipe(
+    ofType(Registration.REGISTER),
+    map((action: Registration.Signup) => action.payload),
+    exhaustMap(auth =>
       this.authService
         .register(auth)
         .map(user => {
@@ -52,14 +56,16 @@ export class AuthEffects {
           return new Registration.SignupSuccess({ user });
         })
         .catch(error => of(new Registration.SignupFailure(error)))
-    );
+    )
+  );
 
   @Effect({ dispatch: false })
-  registerSuccess = this.actions
-    .ofType(Registration.REGISTER_SUCCESS)
-    .do(authed => {
+  registerSuccess = this.actions.pipe(
+    ofType(Registration.REGISTER_SUCCESS),
+    tap(authed => {
       this.router.navigate(['/app']);
-    });
+    })
+  );
 
   constructor(
     private actions: Actions,

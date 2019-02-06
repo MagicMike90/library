@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 //Define BookSchema with title, description and category
 const BookSchema = mongoose.Schema({
     title: {
-        type: String,
+        type: string,
         required: true
     },
-    description: String,
+    description: string,
     category: {
-        type: String,
+        type: string,
         required: true,
         enum: ['High', 'Medium', 'Low']
     }
