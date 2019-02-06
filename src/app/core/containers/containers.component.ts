@@ -1,14 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
-import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/let';
-
-import * as layout from '../actions/layout';
+import { rxjs } from 'rxjs/rxjs';
 import * as rootReducer from '../../reducers';
-
+import * as layout from '../actions/layout';
 
 const PRINT_MOBILE = 'print and (max-width: 600px)';
 @Component({
@@ -20,18 +18,22 @@ export class ContainersComponent implements OnInit, OnDestroy {
   private menus: any;
   private mode: string;
   private open: boolean;
-  private watcher: Subscription;
+  private watcher: rxjs;
   private activeMediaQuery: string;
   private selectedLink: string;
 
   private showSidenav: Observable<boolean>;
   private loggedIn: Observable<boolean>;
 
-  constructor(private media: ObservableMedia, private store: Store<rootReducer.State>, private router: Router) {
+  constructor(
+    private media: ObservableMedia,
+    private store: Store<rootReducer.State>,
+    private router: Router
+  ) {
     // have to place in constructor, otherwise it would work
     this.router.events
-      .filter((event) => event instanceof NavigationEnd)
-      .subscribe((event) => {
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe(event => {
         // console.log('ContainersComponent NavigationEnd:', event);
       });
   }
@@ -41,7 +43,9 @@ export class ContainersComponent implements OnInit, OnDestroy {
 
     // windows observer event
     this.watcher = this.media.subscribe((change: MediaChange) => {
-      this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
+      this.activeMediaQuery = change
+        ? `'${change.mqAlias}' = (${change.mediaQuery})`
+        : '';
       if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
         this.mode = 'over';
         this.open = false;
@@ -56,7 +60,7 @@ export class ContainersComponent implements OnInit, OnDestroy {
       { label: 'Customers', icon: 'people', link: '/app/customers' },
       { label: 'Segments', icon: 'label', link: '/app/segments' },
       { label: 'Orders', icon: 'receipt', link: '/app/orders' },
-      { label: 'Categories', icon: 'bookmark', link: '/app/categories' },
+      { label: 'Categories', icon: 'bookmark', link: '/app/categories' }
     ];
 
     /**
@@ -68,7 +72,8 @@ export class ContainersComponent implements OnInit, OnDestroy {
       if (is_mobile && !this.media.isActive(PRINT_MOBILE)) {
         this.mode = 'over';
         this.open = open;
-      } else { // desktop mode
+      } else {
+        // desktop mode
         this.mode = 'side';
         this.open = true;
       }

@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/delay';
-
-import { Authenticate } from '../../models/user';
-import * as fromAuth from '../../reducers';
 import * as Auth from '../../actions/auth';
-
+import * as fromAuth from '../../reducers';
 
 @Component({
   moduleId: module.id,
@@ -22,15 +19,19 @@ export class LoginFormComponent implements OnInit {
   hide = true;
   form: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.minLength(8), Validators.required]);
+  password = new FormControl('', [
+    Validators.minLength(8),
+    Validators.required
+  ]);
 
   constructor(private store: Store<fromAuth.State>) {
-
     this.pending = this.store.select(fromAuth.getLoginPagePending);
     this.error = this.store.select(fromAuth.getLoginPageError);
 
     // TEST : delay for form
-    this.pending.delay(1000).subscribe(pending => pending ? this.form.disable() : this.form.enable());
+    this.pending.subscribe(pending =>
+      pending ? this.form.disable() : this.form.enable()
+    );
 
     this.createForm();
   }
@@ -38,7 +39,7 @@ export class LoginFormComponent implements OnInit {
   createForm() {
     this.form = new FormGroup({
       email: this.email,
-      password: this.password,
+      password: this.password
     });
   }
   ngOnInit() {
@@ -47,11 +48,17 @@ export class LoginFormComponent implements OnInit {
 
   getErrorMessage(type) {
     const errors = {};
-    errors['email'] = (this.email.hasError('required') ? 'You must enter a value' :
-      this.email.hasError('email') ? 'Not a valid email' : '');
+    errors.email = this.email.hasError('required')
+      ? 'You must enter a value'
+      : this.email.hasError('email')
+      ? 'Not a valid email'
+      : '';
 
-    errors['password'] = (this.email.hasError('required') ? 'You must enter a value' :
-      this.password.hasError('minLength') ? 'Not a valid password' : '');
+    errors.password = this.email.hasError('required')
+      ? 'You must enter a value'
+      : this.password.hasError('minLength')
+      ? 'Not a valid password'
+      : '';
     return errors[type];
   }
 

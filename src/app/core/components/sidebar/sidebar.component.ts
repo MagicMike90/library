@@ -1,7 +1,7 @@
-import { Component, OnInit, OnChanges, OnDestroy, Input } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
-import { Subscription } from 'rxjs/Subscription';
+import { NavigationEnd, Router } from '@angular/router';
+import { rxjs } from 'rxjs/rxjs';
 
 class Menu {
   label: String;
@@ -18,7 +18,7 @@ const PRINT_MOBILE = 'print and (max-width: 600px)';
 
 
 export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
-  watcher: Subscription;
+  watcher: rxjs;
   activeMediaQuery: string;
   mode: String;
   open: Boolean;
