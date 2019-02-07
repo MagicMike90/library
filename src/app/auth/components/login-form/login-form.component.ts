@@ -6,15 +6,18 @@ import 'rxjs/add/operator/delay';
 import * as Auth from '../../actions/auth';
 import * as fromAuth from '../../reducers';
 
+interface Error {
+  email?: string;
+  password?: string;
+}
 @Component({
-  moduleId: module.id,
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
   pending: Observable<any>;
-  error: Observable<any>;
+  error: Observable<Error>;
 
   hide = true;
   form: FormGroup;
@@ -26,7 +29,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private store: Store<fromAuth.State>) {
     this.pending = this.store.select(fromAuth.getLoginPagePending);
-    this.error = this.store.select(fromAuth.getLoginPageError);
+    this.error = this.store.select(fromAuth.getLoginPageError) ;
 
     // TEST : delay for form
     this.pending.subscribe(pending =>
@@ -47,7 +50,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   getErrorMessage(type) {
-    const errors = {};
+    const errors: Error = {};
     errors.email = this.email.hasError('required')
       ? 'You must enter a value'
       : this.email.hasError('email')
