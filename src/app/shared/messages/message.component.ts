@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationCancel, NavigationEnd, Router } from '@angular/router';
-import 'rxjs/add/operator/filter';
+import { filter } from 'rxjs/operators';
 import { Message } from './message.model';
 import { MessageService } from './message.service';
 
@@ -15,7 +15,9 @@ export class MessageComponent {
   constructor(messageService: MessageService, router: Router) {
     messageService.messages.subscribe(m => (this.lastMessage = m));
     router.events
-      .filter(e => e instanceof NavigationEnd || e instanceof NavigationCancel)
+      .pipe(
+        filter(e => e instanceof NavigationEnd || e instanceof NavigationCancel)
+      )
       .subscribe(e => {
         this.lastMessage = null;
       });

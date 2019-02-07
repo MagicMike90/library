@@ -5,7 +5,6 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
 // import * as Auth from '../actions/auth';
 // import * as fromAuth from '../reducers';
 import 'rxjs/add/operator/take';

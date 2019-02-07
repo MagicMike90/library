@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/delay';
+import { delay } from 'rxjs/operators';
 import * as Registration from '../../actions/registration';
 import * as fromAuth from '../../reducers';
 
@@ -26,7 +26,7 @@ export class RegisterFormComponent implements OnInit {
 
     // TEST : delay for form
     this.pending
-      .delay(1000)
+      .pipe(delay(1000))
       .subscribe(pending =>
         pending ? this.form.disable() : this.form.enable()
       );

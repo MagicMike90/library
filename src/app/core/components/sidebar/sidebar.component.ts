@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -26,8 +26,8 @@ export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() id: string;
 
-  constructor(private router: Router, public media: ObservableMedia) {
-    this.watcher = media.asObservable().subscribe((change: MediaChange) => {
+  constructor(private router: Router, public mediaObserver: MediaObserver) {
+    this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change
         ? `'${change.mqAlias}' = (${change.mediaQuery})`
         : '';
@@ -45,8 +45,9 @@ export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
     this.watcher.unsubscribe();
   }
   ngOnInit() {
-    const isMobile = this.media.isActive('xs') || this.media.isActive('sm');
-    if (isMobile && !this.media.isActive(PRINT_MOBILE)) {
+    const isMobile =
+      this.mediaObserver.isActive('xs') || this.mediaObserver.isActive('sm');
+    if (isMobile && !this.mediaObserver.isActive(PRINT_MOBILE)) {
       this.mode = 'push';
       this.open = false;
     } else {

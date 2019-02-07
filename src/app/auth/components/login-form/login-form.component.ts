@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/delay';
 import * as Auth from '../../actions/auth';
 import * as fromAuth from '../../reducers';
 
@@ -17,7 +16,7 @@ interface Error {
 })
 export class LoginFormComponent implements OnInit {
   pending: Observable<any>;
-  error: Observable<Error>;
+  error: Observable<any>;
 
   hide = true;
   form: FormGroup;
@@ -28,8 +27,8 @@ export class LoginFormComponent implements OnInit {
   ]);
 
   constructor(private store: Store<fromAuth.State>) {
-    this.pending = this.store.select(fromAuth.getLoginPagePending);
-    this.error = this.store.select(fromAuth.getLoginPageError) ;
+    this.pending = this.store.pipe(select(fromAuth.getLoginPagePending));
+    this.error = this.store.pipe(select(fromAuth.getLoginPageError));
 
     // TEST : delay for form
     this.pending.subscribe(pending =>

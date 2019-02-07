@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import 'rxjs/add/operator/let';
+import { filter } from 'rxjs/operators';
 import * as rootReducer from '../../reducers';
 import * as layout from '../actions/layout';
 
@@ -25,13 +25,13 @@ export class ContainersComponent implements OnInit, OnDestroy {
   private loggedIn: Observable<boolean>;
 
   constructor(
-    private media: ObservableMedia,
+    private mediaObserver: MediaObserver,
     private store: Store<rootReducer.State>,
     private router: Router
   ) {
     // have to place in constructor, otherwise it would work
     this.router.events
-      .filter(event => event instanceof NavigationEnd)
+      .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
         // console.log('ContainersComponent NavigationEnd:', event);
       });
@@ -41,18 +41,20 @@ export class ContainersComponent implements OnInit, OnDestroy {
     this.selectedLink = '/app/dashboard';
 
     // windows observer event
-    this.watcher = this.media.subscribe((change: MediaChange) => {
-      this.activeMediaQuery = change
-        ? `'${change.mqAlias}' = (${change.mediaQuery})`
-        : '';
-      if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
-        this.mode = 'over';
-        this.open = false;
-      } else {
-        this.mode = 'side';
-        this.open = true;
+    this.watcher = this.mediaObserver.media$.subscribe(
+      (change: MediaChange) => {
+        this.activeMediaQuery = change
+          ? `'${change.mqAlias}' = (${change.mediaQuery})`
+          : '';
+        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+          this.mode = 'over';
+          this.open = false;
+        } else {
+          this.mode = 'side';
+          this.open = true;
+        }
       }
-    });
+    );
 
     this.menus = [
       { label: 'Dashboard', icon: 'dashboard', link: '/app/dashboard' },
@@ -67,8 +69,9 @@ export class ContainersComponent implements OnInit, OnDestroy {
      * tree to the provided selector
      */
     this.store.select(rootReducer.getShowSidenav).subscribe(open => {
-      const is_mobile = this.media.isActive('xs') || this.media.isActive('sm');
-      if (is_mobile && !this.media.isActive(PRINT_MOBILE)) {
+      const isMobile =
+        this.mediaObserver.isActive('xs') || this.mediaObserver.isActive('sm');
+      if (isMobile && !this.mediaObserver.isActive(PRINT_MOBILE)) {
         this.mode = 'over';
         this.open = open;
       } else {
