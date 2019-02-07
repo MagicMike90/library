@@ -1,57 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/delay';
-
-import { Authenticate } from '../../models/user';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import * as fromAuth from '../../reducers';
 import * as Auth from '../../actions/auth';
-
-
+interface Error {
+  email?: string;
+  password?: string;
+}
 @Component({
-  moduleId: module.id,
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  pending: Observable<any>;
+  pending: Observable<boolean>;
   error: Observable<any>;
 
   hide = true;
   form: FormGroup;
   email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.minLength(8), Validators.required]);
+  password = new FormControl('', [
+    Validators.minLength(8),
+    Validators.required
+  ]);
 
   constructor(private store: Store<fromAuth.State>) {
-
-    this.pending = this.store.select(fromAuth.getLoginPagePending);
-    this.error = this.store.select(fromAuth.getLoginPageError);
-
-    // TEST : delay for form
-    this.pending.delay(1000).subscribe(pending => pending ? this.form.disable() : this.form.enable());
-
+    this.error = this.store.pipe(select(fromAuth.getLoginPageError));
     this.createForm();
   }
-
+  ngOnInit() {
+    this.store.pipe(select(fromAuth.getLoginPagePending)).subscribe(pending => {
+      pending ? this.form.disable() : this.form.enable();
+    });
+  }
   createForm() {
     this.form = new FormGroup({
       email: this.email,
-      password: this.password,
+      password: this.password
     });
-  }
-  ngOnInit() {
-    // this.form.disable();
   }
 
   getErrorMessage(type) {
-    const errors = {};
-    errors['email'] = (this.email.hasError('required') ? 'You must enter a value' :
-      this.email.hasError('email') ? 'Not a valid email' : '');
+    const errors: Error = {};
+    errors.email = this.email.hasError('required')
+      ? 'You must enter a value'
+      : this.email.hasError('email')
+      ? 'Not a valid email'
+      : '';
 
-    errors['password'] = (this.email.hasError('required') ? 'You must enter a value' :
-      this.password.hasError('minLength') ? 'Not a valid password' : '');
+    errors.password = this.email.hasError('required')
+      ? 'You must enter a value'
+      : this.password.hasError('minLength')
+      ? 'Not a valid password'
+      : '';
     return errors[type];
   }
 

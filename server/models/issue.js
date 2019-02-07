@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
 
-
 var issueSchema = mongoose.Schema({
-  title: { type: String, required: true },
-  owner: { type: String, required: true },
-  status: { type: String, required: true },
-  effort: { type: String, required: true },
-  completionDate: { type: String, required: true },
-  comment: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
+  title: { type: string, required: true },
+  owner: { type: string, required: true },
+  status: { type: string, required: true },
+  effort: { type: string, required: true },
+  completionDate: { type: string, required: true },
+  comment: { type: string, required: true },
+  createdAt: { type: Date, default: Date.now }
 });
 
 const issue = mongoose.model("issue", issueSchema);

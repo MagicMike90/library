@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs/observable/of';
-import { _throw } from 'rxjs/observable/throw';
-import { User, Authenticate } from '../models/user.model';
+import { of, throwError } from 'rxjs';
+import { Authenticate } from '../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +12,7 @@ export class AuthService {
      * message for the login form.
      */
     if (username !== 'test') {
-      return _throw('Invalid username or password');
+      return throwError('Invalid username or password');
     }
 
     return of({ name: 'User' });

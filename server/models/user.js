@@ -1,37 +1,38 @@
 import mongoose from "mongoose";
-var bcrypt = require('bcrypt');
+var bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-
 var Schema = mongoose.Schema;
-var userSchema = new Schema({
-  email: {
-    type: String,
-    index: { unique: true }
+var userSchema = new Schema(
+  {
+    email: {
+      type: string,
+      index: { unique: true }
+    },
+    password: {
+      type: string,
+      required: true
+    },
+    nikename: string,
+    bio: string
   },
-  password: {
-    type: String,
-    required: true
-  },
-  nikename: String,
-  bio: String
-}, {
-  timestamps: true
-});
+  {
+    timestamps: true
+  }
+);
 
-
-userSchema.pre("save", function (next) {
+userSchema.pre("save", function(next) {
   var user = this;
 
   if (!user.isModified("password")) {
     return next();
   }
 
-  bcrypt.genSalt(saltRounds, function (err, salt) {
+  bcrypt.genSalt(saltRounds, function(err, salt) {
     if (err) {
       return next(err);
     }
-    bcrypt.hash(user.password, salt, function (err, hashedPassword) {
+    bcrypt.hash(user.password, salt, function(err, hashedPassword) {
       if (err) {
         return next(err);
       }
@@ -42,11 +43,11 @@ userSchema.pre("save", function (next) {
   });
 });
 
-userSchema.methods.authenticate = function (password, cb) {
+userSchema.methods.authenticate = function(password, cb) {
   return bcrypt.compareSync(password, this.password);
 };
 
-userSchema.methods.name = function () {
+userSchema.methods.name = function() {
   return this.displayName || this.username;
 };
 
