@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import * as fromAuth from '../../reducers';
 import * as Auth from '../../actions/auth';
 interface Error {
@@ -14,7 +15,7 @@ interface Error {
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
-  pending: Observable<any>;
+  pending: Observable<boolean>;
   error: Observable<any>;
 
   hide = true;
@@ -26,27 +27,19 @@ export class LoginFormComponent implements OnInit {
   ]);
 
   constructor(private store: Store<fromAuth.State>) {
-    this.pending = this.store.pipe(select(fromAuth.getLoginPagePending));
     this.error = this.store.pipe(select(fromAuth.getLoginPageError));
-
-    console.log(this.pending);
-
-    // TEST : delay for form
-    this.pending.subscribe(pending =>
-      pending ? this.form.disable() : this.form.enable()
-    );
-
     this.createForm();
   }
-
+  ngOnInit() {
+    this.store.pipe(select(fromAuth.getLoginPagePending)).subscribe(pending => {
+      pending ? this.form.disable() : this.form.enable();
+    });
+  }
   createForm() {
     this.form = new FormGroup({
       email: this.email,
       password: this.password
     });
-  }
-  ngOnInit() {
-    // this.form.disable();
   }
 
   getErrorMessage(type) {
