@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as Auth from '../../actions/auth';
 import * as fromAuth from '../../reducers';
-
+import * as Auth from '../../actions/auth';
 interface Error {
   email?: string;
   password?: string;
@@ -29,6 +28,8 @@ export class LoginFormComponent implements OnInit {
   constructor(private store: Store<fromAuth.State>) {
     this.pending = this.store.pipe(select(fromAuth.getLoginPagePending));
     this.error = this.store.pipe(select(fromAuth.getLoginPageError));
+
+    console.log(this.pending);
 
     // TEST : delay for form
     this.pending.subscribe(pending =>

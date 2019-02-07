@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { exhaustMap, map, tap } from 'rxjs/operators';
+import { exhaustMap, map, tap, catchError } from 'rxjs/operators';
 import * as Auth from '../actions/auth';
 import * as Registration from '../actions/registration';
 import AuthStore from '../auth.store';
@@ -15,13 +15,13 @@ export class AuthEffects {
     ofType(Auth.LOGIN),
     map((action: Auth.Login) => action.payload),
     exhaustMap(auth =>
-      this.authService
-        .login(auth)
-        .map(user => {
+      this.authService.login(auth).pipe(
+        map(user => {
           AuthStore.authenticateUser(user.token);
           return new Auth.LoginSuccess({ user });
-        })
-        .catch(error => of(new Auth.LoginFailure(error)))
+        }),
+        catchError(error => of(new Auth.LoginFailure(error)))
+      )
     )
   );
 
