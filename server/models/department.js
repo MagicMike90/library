@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 var deparmentSchema = new Schema(
   {
     id: Number,
-    name: { type: string, required: true },
+    name: { type: String, required: true },
     manager: Schema.Types.ObjectId,
-    location: string
+    location: String
   },
   { timestamps: true }
 );

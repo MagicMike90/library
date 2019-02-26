@@ -6,15 +6,15 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema(
   {
     email: {
-      type: string,
+      type: String,
       index: { unique: true }
     },
     password: {
-      type: string,
+      type: String,
       required: true
     },
-    nikename: string,
-    bio: string
+    nikename: String,
+    bio: String
   },
   {
     timestamps: true

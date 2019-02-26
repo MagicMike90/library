@@ -9,22 +9,22 @@ var employeeSchema = new Schema(
       required: true,
       text: true
     },
-    gender: string,
+    gender: String,
     age: Number,
     managerId: Number,
     reports: Number,
-    managerName: string,
-    title: string,
-    department: string,
-    email: string,
-    phone: string,
-    address: string,
-    zipcode: string,
+    managerName: String,
+    title: String,
+    department: String,
+    email: String,
+    phone: String,
+    address: String,
+    zipcode: String,
     salary: Number,
     isCurrent: boolean,
     startDate: Date,
     leaveData: Date,
-    nationality: string
+    nationality: String
   },
   {
     timestamps: true

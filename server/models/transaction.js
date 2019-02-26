@@ -6,10 +6,10 @@ var transactionSchema = new Schema(
     id: Number,
     amount: Number,
     date: Date,
-    bussiness: string,
-    name: string,
-    type: string,
-    account: string
+    bussiness: String,
+    name: String,
+    type: String,
+    account: String
   },
   {
     timestamps: true
