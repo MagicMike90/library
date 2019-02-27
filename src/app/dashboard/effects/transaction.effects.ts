@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+
+// it is expecting susequence action (emit something, i.e promise),
+// so have to use map
+import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import * as Transaction from '../actions/transaction';
 import { DashboardService } from '../services/dashboard.service';
 
@@ -11,7 +14,7 @@ export class TransactionEffects {
   @Effect()
   getTransations = this.actions.pipe(
     ofType(Transaction.GET_TRANSACTIONS),
-    tap(action =>
+    switchMap(() =>
       this.dashboardService.getTransactions().pipe(
         map(payload => {
           return new Transaction.GetTransactionsSuccess(payload.transactions);

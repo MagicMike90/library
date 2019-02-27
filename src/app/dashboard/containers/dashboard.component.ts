@@ -1,13 +1,13 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as Transaction from '../actions/transaction';
 import * as dashboard from '../reducers';
 
-const map_geo_json = '../../../assets/geojson/custom.geo.json';
+const MAP_GEO_JSON = '../../../assets/geojson/custom.geo.json';
 @Component({
   moduleId: module.id,
   selector: 'app-dashboard',
@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
 
   date = new FormControl(new Date());
 
-  constructor(private http: Http, private store: Store<dashboard.State>) {
+  constructor(private http: HttpClient, private store: Store<dashboard.State>) {
     this.transaction = this.store.select(dashboard.getTransactions);
     this.transaction.subscribe(
       transactions => (this.transactionSummary = transactions)
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.selected = 'sales';
-    this.http.get(map_geo_json).subscribe(res => (this.geojson = res.json()));
+    this.http.get(MAP_GEO_JSON).subscribe((res: any) => (this.geojson = res));
     // // give everything a chance to get loaded before starting the animation to reduce choppiness
     // setTimeout(() => {
     //   this.generateData();
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
     //   setInterval(() => this.generateData(), 3000);
     // }, 1000);
 
-    // this.store.dispatch(new Transaction.GetTransactions());
+    this.store.dispatch(new Transaction.GetTransactions());
   }
   showSales() {
     return this.selected === 'sales';
