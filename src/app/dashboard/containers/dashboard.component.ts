@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
     //   setInterval(() => this.generateData(), 3000);
     // }, 1000);
 
-    this.store.dispatch(new Transaction.GetTransactions());
+    // this.store.dispatch(new Transaction.GetTransactions());
   }
   showSales() {
     return this.selected === 'sales';

@@ -49,6 +49,7 @@ export class AuthEffects {
       this.authService.register(auth).pipe(
         map(user => {
           AuthStore.authenticateUser(user.token);
+          console.log('user', user);
           return new Registration.SignupSuccess({ user });
         }),
         catchError(error => of(new Registration.SignupFailure(error)))
